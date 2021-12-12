@@ -1,0 +1,12 @@
+.popup__close{
+background: transparent url(../../../Photo/Close.svg);
+width: 32px;
+height: 32px;
+background-repeat: no-repeat;
+position: absolute;
+right: -40px;
+top: -40px;
+border: 0;
+margin: 0;
+padding: 0;
+}
