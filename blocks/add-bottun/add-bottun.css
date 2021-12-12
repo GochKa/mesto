@@ -18,3 +18,11 @@
     opacity: 0.6;
     transition-duration: 1s;
 }
+
+@media screen and (max-width: 540px){
+    .add-bottun{
+        width: 282px;
+        margin-left: 0;
+        margin-top: 36px;
+    }
+}

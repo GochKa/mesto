@@ -4,3 +4,12 @@
     margin-top: 45px;
     margin-bottom: 40px;
 }
+
+@media screen and (max-width: 540px){
+    .header{
+        max-width: 320px;
+        margin-top: 28px;
+        margin-left: 27px;
+        margin-bottom: 42px;
+    }
+}

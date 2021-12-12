@@ -6,3 +6,11 @@
     row-gap: 16px;
     margin-left: 30px;
 }
+
+@media screen and (max-width:540px){
+    .profile__info{
+        row-gap: 14px;
+        column-gap: 10px;
+        margin-left: 0;
+    }
+}
