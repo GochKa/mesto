@@ -13,4 +13,19 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
+    cursor: pointer;
+}
+
+.popup__add:hover{
+    opacity: 0.8;
+    transition-duration: 1s;
+}
+
+@media screen and (max-width: 540px){
+    .popup__add{
+        width: 238px;
+        height: 46px;
+        margin-top: 45px;
+        margin-left: 22px;
+    }
 }

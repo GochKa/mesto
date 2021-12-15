@@ -1,0 +1,11 @@
+.post-list__like_active{
+    background-image: url(../../../../Photo/Like_Black.svg);
+    background-repeat: no-repeat;
+    border: 0;
+    width: 22px;
+    height: 19px;
+    align-self: center;
+    cursor: pointer;
+    background-position: 50% 50%;
+    background-color: white;
+}
