@@ -24,3 +24,28 @@ popup.addEventListener("click", closePopupOnOverlayClick);
 
 /*!Кнопка сохранения информации профиля*/
 
+//Текст в профиле
+let ProfileName = document.querySelector(".profile__info-title");
+let ProfileJob = document.querySelector(".profile__info-subtitle");
+
+//Форма в Popup'е
+let popupForm = document.querySelector(".input-info");
+
+//Поля формы
+let popupName = document.querySelector(".popup__text");
+let popupJob = document.querySelector(".popup__text_extra");
+
+function profileChange(evt) {
+    evt.preventDefault();
+
+    popupName.getAttribute("value");
+    popupJob.getAttribute("value");
+
+    let ProfileName = document.querySelector(".profile__info-title");
+    let ProfileJob = document.querySelector(".profile__info-subtitle");
+
+    ProfileName.textContent = (popupName.value);
+    ProfileJob.textContent = (popupJob.value);
+}
+
+popupForm.addEventListener('submit', profileChange); 

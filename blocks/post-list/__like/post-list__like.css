@@ -14,3 +14,7 @@
     opacity: 0.5;
     transition-duration: 1s;
 }
+
+.post-list__like:active{
+    background-image: url(../../../../Photo/Like_Black.svg);
+}
