@@ -1,5 +1,5 @@
 .post-list__like{
-    background-image: url(../../../../Photo/Like.svg);
+    background-image: url(../../../Photo/Like.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: white;
@@ -13,8 +13,4 @@
 .post-list__like:hover{
     opacity: 0.5;
     transition-duration: 1s;
-}
-
-.post-list__like:active{
-    background-image: url(../../../../Photo/Like_Black.svg);
 }
