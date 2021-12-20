@@ -33,7 +33,7 @@ let popupForm = document.querySelector(".input-info");
 
 //Поля формы
 let popupName = document.querySelector(".popup__text");
-let popupJob = document.querySelector(".popup__text_extra");
+let popupJob = document.querySelector(".extra");
 
 function profileChange(evt) {
     evt.preventDefault();

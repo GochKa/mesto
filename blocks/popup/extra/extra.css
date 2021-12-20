@@ -1,4 +1,4 @@
-.popup__text_extra{
+.extra{
     width: 358px;
     font-family: "Inter";
     font-style: normal;
@@ -14,18 +14,18 @@
     
 }
 
-.popup__text_extra:last-of-type{
+.extra:last-of-type{
     margin-top: 30px;
 }
 
 
 @media screen and (max-width: 540px){
-    .popup__text_extra{
+    .extra{
         width: 238px;
         margin-left: 22px;
         margin-right: 22px;
     }
-    .popup__text_extra:first-of-type{
+    .extra:first-of-type{
         margin-top: 75px;
     }
 }
