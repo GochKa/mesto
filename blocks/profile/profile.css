@@ -3,6 +3,13 @@
     display: flex;
 }
 
+@media screen and (max-width: 800px){
+    .profile{
+        width: 768px;
+        margin-left: 10px;
+    }
+}  
+
 @media screen and (max-width: 540px){
     .profile{
         width: 282px;
