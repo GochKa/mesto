@@ -8,9 +8,9 @@
     border: 0;
     align-self: center;
     cursor: pointer;
+    transition-duration: 1s;
 }
 
 .post-list__like:hover{
     opacity: 0.5;
-    transition-duration: 1s;
 }

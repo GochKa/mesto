@@ -11,15 +11,15 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     cursor: pointer;
-    
+    transition-duration: 1s;
 }
 
 .add-bottun:hover{
     opacity: 0.6;
-    transition-duration: 1s;
+
 }
 
-@media screen and (max-width: 540px){
+@media screen and (max-width: 750px){
     .add-bottun{
         width: 282px;
         margin-left: 0;
