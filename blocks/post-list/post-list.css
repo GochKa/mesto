@@ -7,14 +7,11 @@
     margin-top: 50px;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1120px){
     .post-list{
         grid-template-columns: repeat(2, 282px);
     }
 }
-
-
-
 
 
 @media screen and (max-width: 600px){
