@@ -3,6 +3,7 @@ const popupOpenButton = document.querySelector(".edit-button");
 const popupCloseButton = document.querySelector(".popup__close");
 const popup = document.querySelector(".popup");
 
+const popupSaveForm = document.querySelector(".input-info");
 
 function togglePopup() {
     popup.classList.toggle("popup_opened");
@@ -14,16 +15,16 @@ function closePopupOnOverlayClick(event) {
     }
 }
 
-function popopCloseOnKey(e){
-    if (e.key === "Enter"){
-        popup.classList.remove("popup_opened");
-    }
+function popupSaveOnEdit(){
+    popup.classList.remove("popup_opened");
 }
+
+
+popupSaveForm.addEventListener("submit", popupSaveOnEdit);
 
 popupOpenButton.addEventListener("click", togglePopup);
 popupCloseButton.addEventListener("click", togglePopup);
 popup.addEventListener("click", closePopupOnOverlayClick);
-popup.addEventListener("keydown", popopCloseOnKey);
 
 /*!Кнопка сохранения информации профиля*/
 
@@ -50,11 +51,10 @@ popupForm.addEventListener('submit', profileChange);
 //Копирование данных из профиля в Popup
 
 function popupCopy(){
-    let profileNameCopy = document.querySelector(".profile__info-title").textContent;
-    let profileJobCopy = document.querySelector(".profile__info-subtitle").textContent;
-    
-    popupName.value = profileNameCopy;
-    popupJob.value = profileJobCopy;
+    popupName.value = profileName.textContent;
+    popupJob.value = profileJob.textContent;
+
 }
+
 
 popupOpenButton.addEventListener("click", popupCopy)

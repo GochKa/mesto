@@ -11,14 +11,14 @@
     margin-bottom: 60px;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 800px){
     .footer{
         max-width: 780px;
     }
 }
 
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 600px){
     .footer{
         margin-top: 48px;
         margin-bottom: 36px;

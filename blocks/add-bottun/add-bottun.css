@@ -19,7 +19,16 @@
 
 }
 
-@media screen and (max-width: 750px){
+@media screen and (max-width: 800px){
+    .add-bottun{
+        max-width: 282px;
+        margin-left: 200px;
+        
+    }
+}
+
+
+@media screen and (max-width: 600px){
     .add-bottun{
         width: 282px;
         margin-left: 0;

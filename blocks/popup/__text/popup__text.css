@@ -1,6 +1,6 @@
 .popup__text{
     width: 358px;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif, Arial;;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

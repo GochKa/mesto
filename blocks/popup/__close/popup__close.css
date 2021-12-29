@@ -10,16 +10,21 @@
     margin: 0;
     padding: 0;
     cursor: pointer;
+    transition-duration: 1s;
 }
 
 .popup__close:hover {
     opacity: 0.6;
-    transition-duration: 1s;
+    
 }
 
 @media screen and (max-width: 540px) {
     .popup__close {
         right: 0;
         top: -48px;
+        background: transparent url(../../../Images/Close_Icon_320px.svg);
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
     }
 }
