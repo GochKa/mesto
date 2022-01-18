@@ -17,7 +17,8 @@
         </header>
         <main class="content">
             <section class="profile">
-                    <img src="./Images/image.jpg" alt="Профиль" class="profile__avatar">
+
+                <img src="./Images/image.jpg" alt="Профиль" class="profile__avatar">
                 <div class="profile__info">
                     <h1 class="profile__info-title">Жак-Ив Кусто</h1>
                     <button class="edit-button" type="button">
@@ -30,47 +31,65 @@
             <section class="post-list">
                 <div class="post-list__item">
                     <img src="./Images/Русскеала.jpg" alt="Русскеала" class="post-list__photo">
+                    <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Русскеала</h2>
                         <button class="post-list__like" type="button"></button>
                     </div>
                 </div>
                 <div class="post-list__item">
+
                     <img src="./Images/Петергоф.jpg" alt="Петергоф" class="post-list__photo">
+
+                    <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Петергоф</h2>
                         <button class="post-list__like" type="button"></button>
                     </div>
                 </div>
                 <div class="post-list__item">
+
                     <img src="./Images/Рыбацкая_деревня.jpg" alt="Рыбацкая_деревня" class="post-list__photo">
+
+                    <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Калининград</h2>
                         <button class="post-list__like" type="button"></button>
                     </div>
                 </div>
                 <div class="post-list__item">
+
                     <img src="./Images/Алтай.jpg" alt="Алтай" class="post-list__photo">
+
+                    <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Алтай</h2>
                         <button class="post-list__like" type="button"></button>
                     </div>
                 </div>
                 <div class="post-list__item">
+
                     <img src="./Images/Байкал.jpg" alt="Байкал" class="post-list__photo">
+
+                    <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Байкал</h2>
                         <button class="post-list__like" type="button"></button>
                     </div>
                 </div>
                 <div class="post-list__item">
+
                     <img src="./Images/Таймс-сквер.jpg" alt="Таймс-сквер" class="post-list__photo">
+
+                    <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Таймс-сквер</h2>
                         <button class="post-list__like" type="button"></button>
                     </div>
+
                 </div>
             </section>
+            
 
         </main>
         <footer class="footer">
@@ -83,13 +102,25 @@
         <div class="popup__container">
             <button class="popup__close" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form  class="input-info" name="Popup">
+            <form class="input-info" name="Popup">
                 <input class="popup__text" name="First-name">
                 <input class="popup__text extra" name="Profession">
                 <button class="popup__add" type="submit">Сохранить</button>
             </form>
         </div>
     </article>
+
+    <artical class="popup-img ">
+        <div class="popup__container">
+            <button class="popup__close blocked" type="button"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <form class="input-info" name="Popup">
+                <input class="popup__text" name="Place" placeholder="Название">
+                <input class="popup__text extra" name="Link" placeholder="Ссылка на изображение">
+                <button class="popup__add" type="submit">Создать</button>
+            </form>
+        </div>
+    </artical>
 
     <script src="./scripts/index.js"></script>
 </body>
