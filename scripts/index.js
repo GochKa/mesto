@@ -1,33 +1,3 @@
-const initialCards = [{
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-
-
-
-
 /*!Окно редактирования профиля*/
 const popupOpenButton = document.querySelector(".edit-button");
 const popupCloseButton = document.querySelector(".popup__close");
@@ -101,38 +71,53 @@ function popupImgToggle() {
     popupImg.classList.toggle("popup-img_opened");
 }
 
-
 popupImgOpenBottun.addEventListener("click", popupImgToggle);
 popupImgCLoseButton.addEventListener("click", popupImgToggle);
 
 
 //Кнопка лайка
-
 const postLike = document.querySelectorAll(".post-list__like")
 
-postLike.forEach( (item) => {
-    item.addEventListener("click", function(event){
+postLike.forEach((item) => {
+    item.addEventListener("click", function (event) {
         const eventTarget = event.target;
         eventTarget.classList.toggle("post-list__like_active");
     })
 })
 
-
-//const postBlock = document.querySelector(".post-list__item").cloneNode(true);
-//console.log(postBlock);
-
-//const postList = document.querySelector(".post-list");
-//console.log(postList);
-
-//postList.append(postBlock);
-
+//Удаление карточек мест
 const deletePostButton = document.querySelectorAll(".delete");
-console.log(deletePostButton)
 
-deletePostButton.forEach( (item) => {
-    item.addEventListener("click", function(evt){
-        const evtTar = evt.target.closest(".post-list__item"); 
+deletePostButton.forEach((item) => {
+    item.addEventListener("click", function (evt) {
+        const evtTar = evt.target.closest(".post-list__item");
         evtTar.remove();
+        console.log(evt.target);
     })
+    
 })
+
+
+//Форма добавления новых карточек
+
+const addForm = document.querySelector(".img");
+const imgLink = popupImg.querySelector(".link");
+const nameNewPlace = popupImg.querySelector(".nameplace");
+console.log(addForm);
+
+function addNewPlace(event) {
+    event.preventDefault();
+    const postList = document.querySelector(".post-list");
+    const postBlockTemp = document.querySelector("#post-temp").content;
+    const copyPostTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
+
+    copyPostTemp.querySelector(".post-list__photo").src = imgLink.value;      
+    copyPostTemp.querySelector(".post-list__title").textContent = nameNewPlace.value;
+    
+    postList.append(copyPostTemp);
+
+    popupImg.classList.remove("popup-img_opened")
+}
+
+addForm.addEventListener("submit", addNewPlace);   
 

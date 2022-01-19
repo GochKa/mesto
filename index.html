@@ -38,9 +38,7 @@
                     </div>
                 </div>
                 <div class="post-list__item">
-
                     <img src="./Images/Петергоф.jpg" alt="Петергоф" class="post-list__photo">
-
                     <button class="delete" type="button"></button>
                     <div class="post-list__info">
                         <h2 class="post-list__title">Петергоф</h2>
@@ -88,8 +86,21 @@
                     </div>
 
                 </div>
+                <template id="post-temp">
+                    <div class="post-list__item">
+                        <img src="" alt="Таймс-сквер" class="post-list__photo">
+                        <button class="delete" type="button"></button>
+                        <div class="post-list__info">
+                            <h2 class="post-list__title"></h2>
+                            <button class="post-list__like" type="button"></button>
+                        </div>
+
+                    </div>
+                </template>
+
+
             </section>
-            
+
 
         </main>
         <footer class="footer">
@@ -110,14 +121,14 @@
         </div>
     </article>
 
-    <artical class="popup-img ">
+    <artical class="popup-img">
         <div class="popup__container">
             <button class="popup__close blocked" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="input-info" name="Popup">
-                <input class="popup__text" name="Place" placeholder="Название">
-                <input class="popup__text extra" name="Link" placeholder="Ссылка на изображение">
-                <button class="popup__add" type="submit">Создать</button>
+            <form class="input-info img" name="Popup">
+                <input class="popup__text nameplace" name="Place" placeholder="Название">
+                <input class="popup__text link" name="Link" placeholder="Ссылка на изображение">
+                <button class="popup__add newpost" type="submit">Создать</button>
             </form>
         </div>
     </artical>
