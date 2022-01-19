@@ -1,3 +1,33 @@
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+
+  const postBlockTemp = document.querySelector("#post-temp").content;
+  const postList = document.querySelector(".post-list");
+
 /*!Окно редактирования профиля*/
 const popupOpenButton = document.querySelector(".edit-button");
 const popupCloseButton = document.querySelector(".popup__close");
@@ -98,17 +128,18 @@ deletePostButton.forEach((item) => {
 })
 
 
+
+
 //Форма добавления новых карточек
 
 const addForm = document.querySelector(".img");
 const imgLink = popupImg.querySelector(".link");
 const nameNewPlace = popupImg.querySelector(".nameplace");
-console.log(addForm);
+
 
 function addNewPlace(event) {
     event.preventDefault();
-    const postList = document.querySelector(".post-list");
-    const postBlockTemp = document.querySelector("#post-temp").content;
+    
     const copyPostTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
 
     copyPostTemp.querySelector(".post-list__photo").src = imgLink.value;      
@@ -118,6 +149,7 @@ function addNewPlace(event) {
 
     popupImg.classList.remove("popup-img_opened")
 }
+
 
 addForm.addEventListener("submit", addNewPlace);   
 
