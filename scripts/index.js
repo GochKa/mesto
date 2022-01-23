@@ -1,32 +1,46 @@
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const initialCards = [{
+    name: 'Река Ли, Китай',
+    link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_0c55afbdfda1cfd00bea35e96b4dfb25.jpg'
+  },
+  {
+    name: 'Горы Тяньцзи, Китай',
+    link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_f436509ef066bf8709a18b4249482acc.jpg'
+  },
+  {
+    name: 'Долина Йосемити, США',
+    link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_59c3c2e868a84654118af91efc201229.jpg'
+  },
+  {
+    name: 'Мачу-Пикчу, Перу',
+    link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_4f7f27067bc0f9250078b361014720f6.jpg'
+  },
+  {
+    name: 'Шондонг, Вьетнам',
+    link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_abf27fe402a0a23d562d45fc0b637142.jpg'
+  },
+  {
+    name: 'Гейрангер-фьорд, Норвегия',
+    link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_44622a18dda9f72bee0e798a9fcc9f5c.jpg'
+  }
+];
 
-  const postBlockTemp = document.querySelector("#post-temp").content;
+
+const postBlockTemp = document.querySelector("#post-temp").content;
+
+initialCards.forEach(function (info) {
+
+  const postItemTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
   const postList = document.querySelector(".post-list");
+
+  postItemTemp.querySelector(".post-list__photo").src = info.link;
+  postItemTemp.querySelector(".post-list__title").textContent = info.name;
+  postItemTemp.querySelector(".post-list__title").alt = info.name;
+
+
+
+  postList.prepend(postItemTemp);
+  
+})
 
 /*!Окно редактирования профиля*/
 const popupOpenButton = document.querySelector(".edit-button");
@@ -36,17 +50,17 @@ const popup = document.querySelector(".popup");
 const popupSaveForm = document.querySelector(".input-info");
 
 function togglePopup() {
-    popup.classList.toggle("popup_opened");
+  popup.classList.toggle("popup_opened");
 }
 
 function closePopupOnOverlayClick(event) {
-    if (event.target === event.currentTarget) {
-        popup.classList.remove("popup_opened");
-    }
+  if (event.target === event.currentTarget) {
+    popup.classList.remove("popup_opened");
+  }
 }
 
 function popupSaveOnEdit() {
-    popup.classList.remove("popup_opened");
+  popup.classList.remove("popup_opened");
 }
 
 
@@ -70,10 +84,10 @@ let popupName = document.querySelector(".popup__text");
 let popupJob = document.querySelector(".extra");
 
 function profileChange(evt) {
-    evt.preventDefault();
+  evt.preventDefault();
 
-    profileName.textContent = popupName.value;
-    profileJob.textContent = popupJob.value;
+  profileName.textContent = popupName.value;
+  profileJob.textContent = popupJob.value;
 }
 
 popupForm.addEventListener('submit', profileChange);
@@ -81,8 +95,8 @@ popupForm.addEventListener('submit', profileChange);
 //Копирование данных из профиля в Popup
 
 function popupCopy() {
-    popupName.value = profileName.textContent;
-    popupJob.value = profileJob.textContent;
+  popupName.value = profileName.textContent;
+  popupJob.value = profileJob.textContent;
 
 }
 
@@ -98,7 +112,7 @@ const popupImgOpenBottun = document.querySelector(".add-bottun");
 const popupImgCLoseButton = document.querySelector(".blocked");
 
 function popupImgToggle() {
-    popupImg.classList.toggle("popup-img_opened");
+  popupImg.classList.toggle("popup-img_opened");
 }
 
 popupImgOpenBottun.addEventListener("click", popupImgToggle);
@@ -109,22 +123,23 @@ popupImgCLoseButton.addEventListener("click", popupImgToggle);
 const postLike = document.querySelectorAll(".post-list__like")
 
 postLike.forEach((item) => {
-    item.addEventListener("click", function (event) {
-        const eventTarget = event.target;
-        eventTarget.classList.toggle("post-list__like_active");
-    })
+  item.addEventListener("click", function (event) {
+    const eventTarget = event.target;
+    eventTarget.classList.toggle("post-list__like_active");
+  })
 })
 
 //Удаление карточек мест
 const deletePostButton = document.querySelectorAll(".delete");
+const newdeletePostButton = document.querySelector(".delete");
 
 deletePostButton.forEach((item) => {
-    item.addEventListener("click", function (evt) {
-        const evtTar = evt.target.closest(".post-list__item");
-        evtTar.remove();
-        console.log(evt.target);
-    })
-    
+  item.addEventListener("click", function (evt) {
+    const evtTar = evt.target.closest(".post-list__item");
+    evtTar.remove();
+    console.log(evt.target);
+  })
+
 })
 
 
@@ -138,18 +153,63 @@ const nameNewPlace = popupImg.querySelector(".nameplace");
 
 
 function addNewPlace(event) {
-    event.preventDefault();
-    
-    const copyPostTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
+  event.preventDefault();
+  const postBlockTemp = document.querySelector("#post-temp").content;
+  const postList = document.querySelector(".post-list");
 
-    copyPostTemp.querySelector(".post-list__photo").src = imgLink.value;      
-    copyPostTemp.querySelector(".post-list__title").textContent = nameNewPlace.value;
-    
-    postList.append(copyPostTemp);
 
-    popupImg.classList.remove("popup-img_opened")
+  let copyPostTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
+
+  let formNameInfo = document.querySelector(".nameplace");
+  let formLinkInfo = document.querySelector(".link");
+
+  formLinkInfo = imgLink.value;
+  formNameInfo = nameNewPlace.value;
+
+  copyPostTemp.querySelector(".post-list__photo").src = formLinkInfo;
+  copyPostTemp.querySelector(".post-list__title").textContent = formNameInfo;
+
+  postList.prepend(copyPostTemp);
+
+  popupImg.classList.remove("popup-img_opened")
+
+  imgLink.value = "";
+  nameNewPlace.value = "";
+
+  const newElementArray = {
+    name: formNameInfo,
+    link: formLinkInfo
+  };
+  initialCards.push(newElementArray);
+  console.log(initialCards.length);
+  console.log(initialCards);
+
 }
 
 
-addForm.addEventListener("submit", addNewPlace);   
+addForm.addEventListener("submit", addNewPlace);
 
+//Открытие zoom'а
+
+const popupZoom = document.querySelector(".popup-zoom")
+const postImg = document.querySelectorAll(".post-list__photo");
+const postTitle = document.querySelector(".post-list__title");
+const popupZoomImg = document.querySelector(".popup-zoom__img");
+const popupZoomTitle = document.querySelector(".popup-zoom__title");
+
+console.log(postImg);
+
+const closePopupZoomButtom = document.querySelector(".popup-zoom__close");
+function closePopupZoom(){
+  popupZoom.classList.remove("popup-zoom_opened");
+}
+closePopupZoomButtom.addEventListener("click", closePopupZoom);
+
+
+postImg.forEach( (event) => {
+  event.addEventListener("click", function(evt){
+    popupZoom.classList.add("popup-zoom_opened");
+    popupZoomImg.src = evt.target.src;
+    popupZoomTitle.textContent = evt.target.textContent;
+  })
+})

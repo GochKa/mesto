@@ -45,3 +45,11 @@
 
 @import url(../blocks/popup-img/popup-img.css);
 @import url(../blocks/popup-img/_opened/popup-img_opened.css);
+
+@import url(../blocks/popup-zoom/popup-zoom.css);
+@import url(../blocks/popup-zoom/__close/popup-zoom__close.css);
+@import url(../blocks/popup-zoom/__container/popup-zoom__container.css);
+@import url(../blocks/popup-zoom/__img/popup-zoom__img.css);
+@import url(../blocks/popup-zoom/__title/popup-zoom__title.css);
+@import url(../blocks/popup-zoom/_opened/popup-zoom_opened.css);
+@import url(../blocks/popup-zoom/__active/popup-zoom__active.css);
