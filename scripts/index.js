@@ -28,7 +28,6 @@ const initialCards = [{
 const postBlockTemp = document.querySelector("#post-temp").content;
 
 initialCards.forEach(function (info) {
-
   const postItemTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
   const postList = document.querySelector(".post-list");
 
@@ -36,10 +35,7 @@ initialCards.forEach(function (info) {
   postItemTemp.querySelector(".post-list__title").textContent = info.name;
   postItemTemp.querySelector(".post-list__title").alt = info.name;
 
-
-
   postList.prepend(postItemTemp);
-  
 })
 
 /*!Окно редактирования профиля*/
@@ -63,11 +59,11 @@ function popupSaveOnEdit() {
   popup.classList.remove("popup_opened");
 }
 
-
 popupSaveForm.addEventListener("submit", popupSaveOnEdit);
 
 popupOpenButton.addEventListener("click", togglePopup);
 popupCloseButton.addEventListener("click", togglePopup);
+
 popup.addEventListener("click", closePopupOnOverlayClick);
 
 /*!Кнопка сохранения информации профиля*/
@@ -85,7 +81,6 @@ let popupJob = document.querySelector(".extra");
 
 function profileChange(evt) {
   evt.preventDefault();
-
   profileName.textContent = popupName.value;
   profileJob.textContent = popupJob.value;
 }
@@ -93,20 +88,14 @@ function profileChange(evt) {
 popupForm.addEventListener('submit', profileChange);
 
 //Копирование данных из профиля в Popup
-
 function popupCopy() {
   popupName.value = profileName.textContent;
   popupJob.value = profileJob.textContent;
-
 }
-
 
 popupOpenButton.addEventListener("click", popupCopy)
 
-
-
 //Окно добавления нового места
-
 const popupImg = document.querySelector(".popup-img");
 const popupImgOpenBottun = document.querySelector(".add-bottun");
 const popupImgCLoseButton = document.querySelector(".blocked");
@@ -119,49 +108,22 @@ popupImgOpenBottun.addEventListener("click", popupImgToggle);
 popupImgCLoseButton.addEventListener("click", popupImgToggle);
 
 
-//Кнопка лайка
-const postLike = document.querySelectorAll(".post-list__like")
-
-postLike.forEach((item) => {
-  item.addEventListener("click", function (event) {
-    const eventTarget = event.target;
-    eventTarget.classList.toggle("post-list__like_active");
-  })
-})
-
-//Удаление карточек мест
-const deletePostButton = document.querySelectorAll(".delete");
-const newdeletePostButton = document.querySelector(".delete");
-
-deletePostButton.forEach((item) => {
-  item.addEventListener("click", function (evt) {
-    const evtTar = evt.target.closest(".post-list__item");
-    evtTar.remove();
-    console.log(evt.target);
-  })
-
-})
-
-
 
 
 //Форма добавления новых карточек
-
 const addForm = document.querySelector(".img");
 const imgLink = popupImg.querySelector(".link");
 const nameNewPlace = popupImg.querySelector(".nameplace");
+const postList = document.querySelector(".post-list");
+
 
 
 function addNewPlace(event) {
   event.preventDefault();
-  const postBlockTemp = document.querySelector("#post-temp").content;
-  const postList = document.querySelector(".post-list");
-
-
   let copyPostTemp = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
-
   let formNameInfo = document.querySelector(".nameplace");
   let formLinkInfo = document.querySelector(".link");
+
 
   formLinkInfo = imgLink.value;
   formNameInfo = nameNewPlace.value;
@@ -181,33 +143,50 @@ function addNewPlace(event) {
     link: formLinkInfo
   };
   initialCards.push(newElementArray);
-  console.log(initialCards.length);
-  console.log(initialCards);
 
+  const deletePostButton = document.querySelectorAll(".delete");
+  const deletePostButtonOne = document.querySelector(".delete");
+  const deletePostButtonArray = Array.from(deletePostButton);
+  deletePostButtonArray.forEach((item) => {
+    item.addEventListener("click", function (evt) {
+      const evtTar = evt.target.closest(".post-list__item");
+      evtTar.remove();
+    })
+  })
+  deletePostButtonArray.push(deletePostButtonOne);
+
+
+  const postLike = document.querySelectorAll(".post-list__like");
+  const postLikeOne = document.querySelector(".post-list__like")
+  const postLikeArray = Array.from(postLike);
+  postLike.forEach((item) => {
+    item.addEventListener("click", function (event) {
+      const eventTarget = event.target;
+      eventTarget.classList.toggle("post-list__like_active");
+    })
+  })
+  postLikeArray.push(postLikeOne);
 }
-
 
 addForm.addEventListener("submit", addNewPlace);
 
-//Открытие zoom'а
 
+
+//Открытие zoom'а
 const popupZoom = document.querySelector(".popup-zoom")
 const postImg = document.querySelectorAll(".post-list__photo");
 const postTitle = document.querySelector(".post-list__title");
 const popupZoomImg = document.querySelector(".popup-zoom__img");
 const popupZoomTitle = document.querySelector(".popup-zoom__title");
-
-console.log(postImg);
-
 const closePopupZoomButtom = document.querySelector(".popup-zoom__close");
-function closePopupZoom(){
+
+function closePopupZoom() {
   popupZoom.classList.remove("popup-zoom_opened");
 }
 closePopupZoomButtom.addEventListener("click", closePopupZoom);
 
-
-postImg.forEach( (event) => {
-  event.addEventListener("click", function(evt){
+postImg.forEach((event) => {
+  event.addEventListener("click", function (evt) {
     popupZoom.classList.add("popup-zoom_opened");
     popupZoomImg.src = evt.target.src;
     popupZoomTitle.textContent = evt.target.textContent;
