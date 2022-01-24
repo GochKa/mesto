@@ -107,7 +107,23 @@ function popupImgToggle() {
 popupImgOpenBottun.addEventListener("click", popupImgToggle);
 popupImgCLoseButton.addEventListener("click", popupImgToggle);
 
+const postLike = document.querySelectorAll(".post-list__like");
+const postLikeArray = Array.from(postLike);
+postLikeArray.forEach((item) => {
+  item.addEventListener("click", function (event) {
+    const eventTarget = event.target;
+    eventTarget.classList.toggle("post-list__like_active");
+  })
+})
 
+const deletePostButton = document.querySelectorAll(".delete");
+const deletePostButtonArray = Array.from(deletePostButton);
+deletePostButtonArray.forEach((item) => {
+  item.addEventListener("click", function (evt) {
+    const evtTar = evt.target.closest(".post-list__item");
+    evtTar.remove();
+  })
+})
 
 
 //Форма добавления новых карточек
@@ -124,9 +140,14 @@ function addNewPlace(event) {
   let formNameInfo = document.querySelector(".nameplace");
   let formLinkInfo = document.querySelector(".link");
 
+  let postLikeTemp = copyPostTemp.querySelectorAll(".post-list__like");
+  let postDelTemp = copyPostTemp.querySelectorAll(".delete");
+
+  let postImgTemp = copyPostTemp.querySelectorAll(".post-list__photo");
 
   formLinkInfo = imgLink.value;
   formNameInfo = nameNewPlace.value;
+
 
   copyPostTemp.querySelector(".post-list__photo").src = formLinkInfo;
   copyPostTemp.querySelector(".post-list__title").textContent = formNameInfo;
@@ -138,34 +159,28 @@ function addNewPlace(event) {
   imgLink.value = "";
   nameNewPlace.value = "";
 
-  const newElementArray = {
-    name: formNameInfo,
-    link: formLinkInfo
-  };
-  initialCards.push(newElementArray);
 
-  const deletePostButton = document.querySelectorAll(".delete");
-  const deletePostButtonOne = document.querySelector(".delete");
-  const deletePostButtonArray = Array.from(deletePostButton);
-  deletePostButtonArray.forEach((item) => {
-    item.addEventListener("click", function (evt) {
-      const evtTar = evt.target.closest(".post-list__item");
-      evtTar.remove();
-    })
-  })
-  deletePostButtonArray.push(deletePostButtonOne);
-
-
-  const postLike = document.querySelectorAll(".post-list__like");
-  const postLikeOne = document.querySelector(".post-list__like")
-  const postLikeArray = Array.from(postLike);
-  postLike.forEach((item) => {
+  postLikeTemp.forEach((item) => {
     item.addEventListener("click", function (event) {
       const eventTarget = event.target;
       eventTarget.classList.toggle("post-list__like_active");
     })
   })
-  postLikeArray.push(postLikeOne);
+
+  postDelTemp.forEach((item) => {
+    item.addEventListener("click", function (evt) {
+      const evtTar = evt.target.closest(".post-list__item");
+      evtTar.remove();
+    })
+  })
+
+  postImgTemp.forEach((event) => {
+    event.addEventListener("click", function (evt) {
+      popupZoom.classList.add("popup-zoom_opened");
+      popupZoomImg.src = evt.target.src;
+      popupZoomTitle.textContent = postListTitle.textContent;
+    })
+  })
 }
 
 addForm.addEventListener("submit", addNewPlace);
@@ -173,12 +188,13 @@ addForm.addEventListener("submit", addNewPlace);
 
 
 //Открытие zoom'а
-const popupZoom = document.querySelector(".popup-zoom")
+const popupZoom = document.querySelector(".popup-zoom");
 const postImg = document.querySelectorAll(".post-list__photo");
-const postTitle = document.querySelector(".post-list__title");
+const postListTitle = document.querySelector(".post-list__title")
 const popupZoomImg = document.querySelector(".popup-zoom__img");
 const popupZoomTitle = document.querySelector(".popup-zoom__title");
 const closePopupZoomButtom = document.querySelector(".popup-zoom__close");
+
 
 function closePopupZoom() {
   popupZoom.classList.remove("popup-zoom_opened");
@@ -186,9 +202,9 @@ function closePopupZoom() {
 closePopupZoomButtom.addEventListener("click", closePopupZoom);
 
 postImg.forEach((event) => {
-  event.addEventListener("click", function (evt) {
+  event.addEventListener("click", function (item) {
     popupZoom.classList.add("popup-zoom_opened");
-    popupZoomImg.src = evt.target.src;
-    popupZoomTitle.textContent = evt.target.textContent;
+    popupZoomImg.src = item.target.src;
+    popupZoomTitle.textContent = postListTitle.textContent;
   })
 })

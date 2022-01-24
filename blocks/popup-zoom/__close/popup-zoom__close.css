@@ -16,3 +16,14 @@
 .popup-zoom__close:hover {
     opacity: 0.6;   
 }
+
+@media screen and (max-width: 540px) {
+    .popup-zoom__close {
+        right: 0;
+        top: -48px;
+        background: transparent url(../../../Images/Close_Icon_320px.svg);
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+}
