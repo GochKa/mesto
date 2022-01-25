@@ -30,9 +30,9 @@ const initialCards = [{
 
 const postBlockTemp = document.querySelector("#post-temp").content;
 const postList = document.querySelector(".post-list");
-const popupZoom = document.querySelector(".zoom-popup");
-const popupZoomImg = document.querySelector(".zoom_popup__img");
-const popupZoomTitle = document.querySelector(".zoom_popup__title");
+const popupZoom = document.querySelector(".zoom");
+const popupZoomImg = document.querySelector(".zoom__img");
+const popupZoomTitle = document.querySelector(".zoom__title");
 
 function createCard(item){
   const postItemTemp = postBlockTemp.cloneNode(true);

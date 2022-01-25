@@ -44,7 +44,7 @@
 
 @import url(../blocks/add_popup/add_popup.css);
 
-@import url(../blocks/zoom_popup/zoom_popup.css);
-@import url(../blocks/zoom_popup/__container/zoom_popup__container.css);
-@import url(../blocks/zoom_popup/__img/zoom_popup__img.css);
-@import url(../blocks/zoom_popup/__title/zoom_popup__title.css);
+@import url(../blocks/zoom/zoom.css);
+@import url(../blocks/zoom/__container/zoom__container.css);
+@import url(../blocks/zoom/__img/zoom__img.css);
+@import url(../blocks/zoom/__title/zoom__title.css);
