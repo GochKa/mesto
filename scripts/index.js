@@ -24,55 +24,53 @@ const initialCards = [{
   }
 ];
 
-
-
-
-
 const postBlockTemp = document.querySelector("#post-temp").content;
 const postList = document.querySelector(".post-list");
 const popupZoom = document.querySelector(".zoom");
 const popupZoomImg = document.querySelector(".zoom__img");
 const popupZoomTitle = document.querySelector(".zoom__title");
 
-function createCard(item){
+function createCard(cardData) {
   const postItemTemp = postBlockTemp.cloneNode(true);
   const postTempImg = postItemTemp.querySelector(".post-list__photo");
   const postTempTitle = postItemTemp.querySelector(".post-list__title");
   const postTempDelButton = postItemTemp.querySelectorAll(".delete");
   const postTempLikeButton = postItemTemp.querySelectorAll(".post-list__like");
-  
-  postTempImg.src = item.link;
-  postTempTitle.textContent = item.name;
-  postTempTitle.alt = item.name;
-  
+
+  postTempImg.src = cardData.link;
+  postTempTitle.textContent = cardData.name;
+  postTempImg.alt = cardData.name;
+
   postTempImg.addEventListener("click", () => {
     openPopup(popupZoom);
-    popupZoomImg.src = item.link;
-    popupZoomTitle.textContent = item.name;
+    popupZoomImg.src = cardData.link;
+    popupZoomTitle.textContent = cardData.name;
+    postTempImg.alt = cardData.name;
   });
 
-  postTempLikeButton.forEach((item) => {
-    item.addEventListener("click", function (event) {
+  postTempLikeButton.forEach((cardData) => {
+    cardData.addEventListener("click", function (event) {
       const eventTarget = event.target;
       eventTarget.classList.toggle("post-list__like_active");
     })
-  })
+  });
 
-  postTempDelButton.forEach((item) => {
-    item.addEventListener("click", function (evt) {
+  postTempDelButton.forEach((cardData) => {
+    cardData.addEventListener("click", function (evt) {
       const evtTar = evt.target.closest(".post-list__item");
       evtTar.remove();
     })
-  })
-
-
- 
-  postList.prepend(postItemTemp);
+  });
 
   return postItemTemp;
-  
 }
-initialCards.forEach(createCard)
+
+function renderCard(data) {
+  const card = createCard(data);
+  postList.prepend(card);
+}
+
+initialCards.forEach(renderCard);
 
 //Константы для popup'ов
 const popupProfile = document.querySelector(".profile-popup");
@@ -92,35 +90,35 @@ const popupZoomCLoseButton = document.querySelector(".shut");
 //Функции кнопок popup'ов
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-}
+};
 
-function closePopup(popup){
+function closePopup(popup) {
   popup.classList.remove("popup_opened");
-}
+};
 
 //Обработчики кнопок 
-    //Открытие
-popupProfileOpenButton.addEventListener("click", () =>{
-  popupCopy();
+//Открытие
+popupProfileOpenButton.addEventListener("click", () => {
+  copyPopup();
   openPopup(popupProfile);
 });
 
-popupAddNewPlaceButton.addEventListener("click", () =>{
+popupAddNewPlaceButton.addEventListener("click", () => {
   openPopup(popupAdd);
 });
 
-    //Закрытие
-popupCloseButton.addEventListener("click", () =>{
+//Закрытие
+popupCloseButton.addEventListener("click", () => {
   closePopup(popupProfile);
-})
+});
 
-popupAddCloseButton.addEventListener("click", () =>{
+popupAddCloseButton.addEventListener("click", () => {
   closePopup(popupAdd);
-})
+});
 
-popupZoomCLoseButton.addEventListener("click", () =>{
+popupZoomCLoseButton.addEventListener("click", () => {
   closePopup(popupZoom);
-})
+});
 
 
 //!Кнопка сохранения информации профиля
@@ -136,72 +134,42 @@ const popupForm = document.querySelector(".input-info");
 const popupName = document.querySelector(".popup__text");
 const popupJob = document.querySelector(".extra");
 
-function profileChange(evt) {
+function changeProfile(evt) {
   evt.preventDefault();
   profileName.textContent = popupName.value;
   profileJob.textContent = popupJob.value;
   closePopup(popupProfile);
-}
+};
 
-popupForm.addEventListener('submit', profileChange);
+popupForm.addEventListener('submit', changeProfile);
 
 //Копирование данных из профиля в Popup
-function popupCopy() {
+function copyPopup() {
   popupName.value = profileName.textContent;
   popupJob.value = profileJob.textContent;
-}
-
-popupProfileOpenButton.addEventListener("click", popupCopy)
-
+};
 
 //Форма добавления новой карточки
 const addForm = document.querySelector(".img");
 
-  //Поля формы добавления 
+//Поля формы добавления 
 const addFormName = document.querySelector(".nameplace");
 const addFormLink = document.querySelector(".link");
 
-function addNewPlace(event){
+
+function addNewPlace(event) {
   event.preventDefault();
-  const copyPostItem = postBlockTemp.querySelector(".post-list__item").cloneNode(true);
-  
-  const copyLike = copyPostItem.querySelectorAll(".post-list__like");
-  const copyDel = copyPostItem.querySelectorAll(".delete");
 
-  const copyImg = copyPostItem.querySelector(".post-list__photo");
-  const copyTitle = copyPostItem.querySelector(".post-list__title");
-
-  
-
-  copyImg.src = addFormLink.value;
-  copyTitle.textContent = addFormName.value;
-
-  copyImg.addEventListener("click", () => {
-    openPopup(popupZoom);
-    popupZoomImg.src = copyImg.src;
-    popupZoomTitle.textContent = copyTitle.textContent;
+  renderCard({
+    name: addFormName.value,
+    link: addFormLink.value
   });
 
-  copyLike.forEach((item) => {
-    item.addEventListener("click", function (event) {
-      const eventTarget = event.target;
-      eventTarget.classList.toggle("post-list__like_active");
-    })
-  })
-
-  copyDel.forEach((item) => {
-    item.addEventListener("click", function (evt) {
-      const evtTar = evt.target.closest(".post-list__item");
-      evtTar.remove();
-    })
-  })
- 
-  postList.prepend(copyPostItem);
+  closePopup(popupAdd);
 
   addFormName.value = "";
   addFormLink.value = "";
- 
-  popupAdd.classList.remove("popup_opened");
-}
+};
+
 
 addForm.addEventListener("submit", addNewPlace);
