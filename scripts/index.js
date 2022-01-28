@@ -90,11 +90,28 @@ const popupZoomCLoseButton = document.querySelector(".shut");
 //Функции кнопок popup'ов
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  popup.addEventListener("mousedown", closePopupOnOverlay);
+  document.addEventListener("keydown", closePopupKeyHandler);
 };
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  popup.removeEventListener("mousedown", closePopupOnOverlay);
+  document.removeEventListener("keydown", closePopupKeyHandler);
 };
+
+function closePopupOnOverlay(evt){
+  if (evt.target === evt.currentTarget){
+    evt.target.classList.remove("popup_opened");
+  }
+}
+
+function closePopupKeyHandler(event){
+  if(event.key === "Escape" || event.keyCode === 27){
+    const classClosing = document.querySelector(".popup_opened");
+    closePopup(classClosing);
+  }
+}
 
 //Обработчики кнопок 
 //Открытие
@@ -119,6 +136,7 @@ popupAddCloseButton.addEventListener("click", () => {
 popupZoomCLoseButton.addEventListener("click", () => {
   closePopup(popupZoom);
 });
+
 
 
 //!Кнопка сохранения информации профиля
