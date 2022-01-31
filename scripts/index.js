@@ -103,6 +103,7 @@ function closePopup(popup) {
 function closePopupOnOverlay(evt){
   if (evt.target === evt.currentTarget){
     evt.target.classList.remove("popup_opened");
+    clearErrorMessage()
   }
 }
 
@@ -110,6 +111,7 @@ function closePopupKeyHandler(event){
   if(event.key === "Escape" || event.keyCode === 27){
     const classClosing = document.querySelector(".popup_opened");
     closePopup(classClosing);
+    clearErrorMessage()
   }
 }
 
@@ -118,19 +120,25 @@ function closePopupKeyHandler(event){
 popupProfileOpenButton.addEventListener("click", () => {
   copyPopup();
   openPopup(popupProfile);
+  const newInfoButton = document.querySelector(".change");
+  newInfoButton .removeAttribute("disabled");
+  newInfoButton.classList.remove("popup__add_disabled");
 });
 
 popupAddNewPlaceButton.addEventListener("click", () => {
   openPopup(popupAdd);
+
 });
 
 //Закрытие
 popupCloseButton.addEventListener("click", () => {
   closePopup(popupProfile);
+  clearErrorMessage()
 });
 
 popupAddCloseButton.addEventListener("click", () => {
   closePopup(popupAdd);
+  clearErrorMessage()
 });
 
 popupZoomCLoseButton.addEventListener("click", () => {
@@ -173,6 +181,7 @@ const addForm = document.querySelector(".img");
 //Поля формы добавления 
 const addFormName = document.querySelector(".nameplace");
 const addFormLink = document.querySelector(".link");
+const addNewPostButton = document.querySelector(".newpost");
 
 
 function addNewPlace(event) {
@@ -184,6 +193,9 @@ function addNewPlace(event) {
   });
 
   closePopup(popupAdd);
+  clearErrorMessage();
+  addNewPostButton.setAttribute("disabled", "true");
+  addNewPostButton.classList.add("popup__add_disabled");
 
   addFormName.value = "";
   addFormLink.value = "";
@@ -191,3 +203,16 @@ function addNewPlace(event) {
 
 
 addForm.addEventListener("submit", addNewPlace);
+
+function clearErrorMessage(){
+  const errorFirts = document.querySelector("#error-first");
+  const errorProf = document.querySelector("#error-profession");
+  const errorPlace = document.querySelector("#error-place");
+  const errorLink = document.querySelector("#error-link");
+
+  errorFirts.textContent= "";  
+  errorProf.textContent = "";
+  errorPlace.textContent = "";
+  errorLink.textContent = "";
+
+}

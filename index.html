@@ -30,7 +30,7 @@
             <section class="post-list">
                 <template id="post-temp">
                     <div class="post-list__item">
-                        <img src="https://cameralabs.org/media/camera/aprel/23aprel/23_44622a18dda9f72bee0e798a9fcc9f5c.jpg" alt="Гейрангер-фьорд, Норвегия" class="post-list__photo">
+                        <img src="" alt="" class="post-list__photo">
                         <button class="delete" type="button"></button>
                         <div class="post-list__info">
                             <h2 class="post-list__title"></h2>
@@ -52,11 +52,13 @@
             <button class="popup__close" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="input-info" name="Popup" novalidate>
-                <input id="first" class="popup__text" minlength="2" maxlength="40" required autocomplete="off" name="First-name">
+                <input id="first" class="popup__text" minlength="2" maxlength="40" required autocomplete="off"
+                    name="First-name">
                 <span id="error-first" class="error-message"></span>
-                <input id="profession" class="popup__text extra" minlength="2" maxlength="200" required autocomplete="off" name="Profession">
+                <input id="profession" class="popup__text extra" minlength="2" maxlength="200" required
+                    autocomplete="off" name="Profession">
                 <span id="error-profession" class="error-message"></span>
-                <button class="popup__add" type="submit">Сохранить</button>
+                <button class="popup__add change" type="submit">Сохранить</button>
             </form>
         </div>
     </article>
@@ -66,9 +68,11 @@
             <button class="popup__close blur" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
             <form class="input-info img" name="Popup" novalidate>
-                <input id="place" class="popup__text nameplace" name="Place" minlength="2" maxlength="30" required autocomplete="off" placeholder="Название">
+                <input id="place" class="popup__text nameplace" name="Place" minlength="2" maxlength="30" required
+                    autocomplete="off" placeholder="Название">
                 <span id="error-place" class="error-message"></span>
-                <input id="link" type="url" class="popup__text link" name="Link" required autocomplete="off" placeholder="Ссылка на изображение">
+                <input id="link" type="url" class="popup__text link" name="Link" required autocomplete="off"
+                    placeholder="Ссылка на изображение">
                 <span id="error-link" class="error-message"></span>
                 <button class="popup__add newpost" type="submit">Создать</button>
             </form>
@@ -78,7 +82,7 @@
     <article class="popup zoom">
         <div class="zoom__container">
             <button class="popup__close shut" type="button"></button>
-            <img src="https://cameralabs.org/media/camera/aprel/23aprel/23_44622a18dda9f72bee0e798a9fcc9f5c.jpg" alt="Гейрангер-фьорд, Норвегия" class="zoom__img">
+            <img src="" alt="" class="zoom__img">
             <h2 class="zoom__title"></h2>
         </div>
     </article>
