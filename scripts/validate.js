@@ -59,7 +59,7 @@ function enableValidation({formSelector, inputSelector , ...rest}){
 
 
 enableValidation({
-  formSelector: ".input-info",
+  formSelector: ".popup__form",
   inputSelector : ".popup__text",
   errorSelector: ".error-message",
   errorVisibleClass: "error-message_visible",

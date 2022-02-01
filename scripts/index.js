@@ -26,9 +26,9 @@ const initialCards = [{
 
 const postBlockTemp = document.querySelector("#post-temp").content;
 const postList = document.querySelector(".post-list");
-const popupZoom = document.querySelector(".zoom");
-const popupZoomImg = document.querySelector(".zoom__img");
-const popupZoomTitle = document.querySelector(".zoom__title");
+const popupPreview = document.querySelector(".preview-popup");
+const popupPreviewImg = document.querySelector(".preview-popup__img");
+const popupPreviewTitle = document.querySelector(".preview-popup__title");
 
 function createCard(cardData) {
   const postItemTemp = postBlockTemp.cloneNode(true);
@@ -42,10 +42,10 @@ function createCard(cardData) {
   postTempImg.alt = cardData.name;
 
   postTempImg.addEventListener("click", () => {
-    openPopup(popupZoom);
-    popupZoomImg.src = cardData.link;
-    popupZoomTitle.textContent = cardData.name;
-    popupZoomImg.alt = cardData.name;
+    openPopup(popupPreview);
+    popupPreviewImg.src = cardData.link;
+    popupPreviewTitle.textContent = cardData.name;
+    popupPreviewImg.alt = cardData.name;
   });
 
   postTempLikeButton.addEventListener("click", function (event) {
@@ -81,7 +81,7 @@ const popupAddNewPlaceButton = document.querySelector(".add-bottun");
 //Кнопки закрытия popup'ов
 const popupCloseButton = document.querySelector(".popup__close");
 const popupAddCloseButton = document.querySelector(".close-addform")
-const popupZoomCLoseButton = document.querySelector(".close-zoom");
+const popupPreviewCLoseButton = document.querySelector(".button-close-preview-popup");
 
 //Функции кнопок popup'ов
 function openPopup(popup) {
@@ -113,7 +113,7 @@ function closePopupKeyHandler(event){
 
 //Обработчики кнопок 
 //Открытие
-const submitProfileButton = document.querySelector(".change");
+const submitProfileButton = document.querySelector(".button-profile-submit");
 popupProfileOpenButton.addEventListener("click", () => {
   copyPopup();
   openPopup(popupProfile);
@@ -124,7 +124,6 @@ popupProfileOpenButton.addEventListener("click", () => {
 
 popupAddNewPlaceButton.addEventListener("click", () => {
   openPopup(popupAdd);
-
 });
 
 //Закрытие
@@ -138,8 +137,8 @@ popupAddCloseButton.addEventListener("click", () => {
   clearErrorMessage()
 });
 
-popupZoomCLoseButton.addEventListener("click", () => {
-  closePopup(popupZoom);
+popupPreviewCLoseButton.addEventListener("click", () => {
+  closePopup(popupPreview);
 });
 
 
@@ -151,7 +150,7 @@ const profileName = document.querySelector(".profile__info-title");
 const profileJob = document.querySelector(".profile__info-subtitle");
 
 //Форма в Popup'е
-const popupProfileForm = document.querySelector(".input-info");
+const popupProfileForm = document.querySelector(".popup__form-profile");
 
 //Поля формы
 const popupProfileName = document.querySelector(".popup__text");
@@ -173,12 +172,12 @@ function copyPopup() {
 };
 
 //Форма добавления новой карточки
-const addForm = document.querySelector(".addnewcard");
+const addForm = document.querySelector(".form-add-card");
 
 //Поля формы добавления 
 const addFormName = document.querySelector(".nameplace");
 const addFormLink = document.querySelector(".link");
-const addNewPostButton = document.querySelector(".createcard");
+const addNewPostButton = document.querySelector(".button-add-card");
 
 
 function addNewPlace(event) {
