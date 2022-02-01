@@ -1,8 +1,3 @@
-function submitForm(){
-
-}
-
-
 function showError(input, errorContainer, {inputErrorClass, errorVisibleClass}){
   input.classList.add(inputErrorClass);
   errorContainer.classList.add(errorVisibleClass);
@@ -47,7 +42,6 @@ function enableValidation({formSelector, inputSelector , ...rest}){
 
 
   forms .forEach( (form) => {
-    form.addEventListener("submit", submitForm)
     const inputs = form.querySelectorAll(inputSelector);
 
 

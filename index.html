@@ -65,23 +65,23 @@
 
     <article class="popup add-popup">
         <div class="popup__container">
-            <button class="popup__close blur" type="button"></button>
+            <button class="popup__close close-addform" type="button"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form class="input-info img" name="Popup" novalidate>
+            <form class="input-info addnewcard" name="Popup" novalidate>
                 <input id="place" class="popup__text nameplace" name="Place" minlength="2" maxlength="30" required
                     autocomplete="off" placeholder="Название">
                 <span id="error-place" class="error-message"></span>
                 <input id="link" type="url" class="popup__text link" name="Link" required autocomplete="off"
                     placeholder="Ссылка на изображение">
                 <span id="error-link" class="error-message"></span>
-                <button class="popup__add newpost" type="submit">Создать</button>
+                <button class="popup__add createcard" type="submit">Создать</button>
             </form>
         </div>
     </article>
 
     <article class="popup zoom">
         <div class="zoom__container">
-            <button class="popup__close shut" type="button"></button>
+            <button class="popup__close close-zoom" type="button"></button>
             <img src="https://cameralabs.org/media/camera/aprel/23aprel/23_f436509ef066bf8709a18b4249482acc.jpg" alt="" class="zoom__img">
             <h2 class="zoom__title"></h2>
         </div>

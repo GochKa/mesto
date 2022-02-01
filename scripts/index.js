@@ -34,8 +34,8 @@ function createCard(cardData) {
   const postItemTemp = postBlockTemp.cloneNode(true);
   const postTempImg = postItemTemp.querySelector(".post-list__photo");
   const postTempTitle = postItemTemp.querySelector(".post-list__title");
-  const postTempDelButton = postItemTemp.querySelectorAll(".delete");
-  const postTempLikeButton = postItemTemp.querySelectorAll(".post-list__like");
+  const postTempDelButton = postItemTemp.querySelector(".delete");
+  const postTempLikeButton = postItemTemp.querySelector(".post-list__like");
 
   postTempImg.src = cardData.link;
   postTempTitle.textContent = cardData.name;
@@ -45,22 +45,18 @@ function createCard(cardData) {
     openPopup(popupZoom);
     popupZoomImg.src = cardData.link;
     popupZoomTitle.textContent = cardData.name;
-    postTempImg.alt = cardData.name;
+    popupZoomImg.alt = cardData.name;
   });
 
-  postTempLikeButton.forEach((cardData) => {
-    cardData.addEventListener("click", function (event) {
+  postTempLikeButton.addEventListener("click", function (event) {
       const eventTarget = event.target;
       eventTarget.classList.toggle("post-list__like_active");
-    })
-  });
+    });
 
-  postTempDelButton.forEach((cardData) => {
-    cardData.addEventListener("click", function (evt) {
+  postTempDelButton.addEventListener("click", function (evt) {
       const evtTar = evt.target.closest(".post-list__item");
       evtTar.remove();
-    })
-  });
+    });
 
   return postItemTemp;
 }
@@ -84,8 +80,8 @@ const popupAddNewPlaceButton = document.querySelector(".add-bottun");
 
 //Кнопки закрытия popup'ов
 const popupCloseButton = document.querySelector(".popup__close");
-const popupAddCloseButton = document.querySelector(".blur")
-const popupZoomCLoseButton = document.querySelector(".shut");
+const popupAddCloseButton = document.querySelector(".close-addform")
+const popupZoomCLoseButton = document.querySelector(".close-zoom");
 
 //Функции кнопок popup'ов
 function openPopup(popup) {
@@ -117,12 +113,13 @@ function closePopupKeyHandler(event){
 
 //Обработчики кнопок 
 //Открытие
+const submitProfileButton = document.querySelector(".change");
 popupProfileOpenButton.addEventListener("click", () => {
   copyPopup();
   openPopup(popupProfile);
-  const newInfoButton = document.querySelector(".change");
-  newInfoButton .removeAttribute("disabled");
-  newInfoButton.classList.remove("popup__add_disabled");
+  
+  submitProfileButton.removeAttribute("disabled");
+  submitProfileButton.classList.remove("popup__add_disabled");
 });
 
 popupAddNewPlaceButton.addEventListener("click", () => {
@@ -154,34 +151,34 @@ const profileName = document.querySelector(".profile__info-title");
 const profileJob = document.querySelector(".profile__info-subtitle");
 
 //Форма в Popup'е
-const popupForm = document.querySelector(".input-info");
+const popupProfileForm = document.querySelector(".input-info");
 
 //Поля формы
-const popupName = document.querySelector(".popup__text");
-const popupJob = document.querySelector(".extra");
+const popupProfileName = document.querySelector(".popup__text");
+const popupProfileJob = document.querySelector(".extra");
 
 function changeProfile(evt) {
   evt.preventDefault();
-  profileName.textContent = popupName.value;
-  profileJob.textContent = popupJob.value;
+  profileName.textContent = popupProfileName.value;
+  profileJob.textContent = popupProfileJob.value;
   closePopup(popupProfile);
 };
 
-popupForm.addEventListener('submit', changeProfile);
+popupProfileForm.addEventListener('submit', changeProfile);
 
 //Копирование данных из профиля в Popup
 function copyPopup() {
-  popupName.value = profileName.textContent;
-  popupJob.value = profileJob.textContent;
+  popupProfileName.value = profileName.textContent;
+  popupProfileJob.value = profileJob.textContent;
 };
 
 //Форма добавления новой карточки
-const addForm = document.querySelector(".img");
+const addForm = document.querySelector(".addnewcard");
 
 //Поля формы добавления 
 const addFormName = document.querySelector(".nameplace");
 const addFormLink = document.querySelector(".link");
-const addNewPostButton = document.querySelector(".newpost");
+const addNewPostButton = document.querySelector(".createcard");
 
 
 function addNewPlace(event) {
@@ -209,10 +206,14 @@ function clearErrorMessage(){
   const errorProf = document.querySelector("#error-profession");
   const errorPlace = document.querySelector("#error-place");
   const errorLink = document.querySelector("#error-link");
+  const popupRedBorder = document.querySelectorAll(".popup__text");
 
   errorFirts.textContent= "";  
   errorProf.textContent = "";
   errorPlace.textContent = "";
   errorLink.textContent = "";
-
+  
+  popupRedBorder.forEach( (input) =>{
+    input.classList.remove("popup__text_type_error");
+  })
 }
