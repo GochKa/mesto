@@ -34,7 +34,7 @@ function createCard(cardData) {
   const postItemTemp = postBlockTemp.cloneNode(true);
   const postTempImg = postItemTemp.querySelector(".post-list__photo");
   const postTempTitle = postItemTemp.querySelector(".post-list__title");
-  const postTempDelButton = postItemTemp.querySelector(".delete");
+  const postTempDelButton = postItemTemp.querySelector(".button-card-delete");
   const postTempLikeButton = postItemTemp.querySelector(".post-list__like");
 
   postTempImg.src = cardData.link;
@@ -80,7 +80,7 @@ const popupAddNewPlaceButton = document.querySelector(".add-bottun");
 
 //Кнопки закрытия popup'ов
 const popupCloseButton = document.querySelector(".popup__close");
-const popupAddCloseButton = document.querySelector(".close-addform")
+const popupAddCloseButton = document.querySelector(".close-add-form")
 const popupPreviewCLoseButton = document.querySelector(".button-close-preview-popup");
 
 //Функции кнопок popup'ов
@@ -154,7 +154,7 @@ const popupProfileForm = document.querySelector(".popup__form-profile");
 
 //Поля формы
 const popupProfileName = document.querySelector(".popup__text");
-const popupProfileJob = document.querySelector(".extra");
+const popupProfileJob = document.querySelector(".profession");
 
 function changeProfile(evt) {
   evt.preventDefault();
@@ -175,7 +175,7 @@ function copyPopup() {
 const addForm = document.querySelector(".form-add-card");
 
 //Поля формы добавления 
-const addFormName = document.querySelector(".nameplace");
+const addFormName = document.querySelector(".name-place");
 const addFormLink = document.querySelector(".link");
 const addNewPostButton = document.querySelector(".button-add-card");
 
