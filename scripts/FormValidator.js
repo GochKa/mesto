@@ -1,3 +1,5 @@
+import { addNewPostButton } from "./Constants.js";
+
 export class FormValidator {
   constructor(settings, form) {
     this._form = form;
@@ -55,7 +57,6 @@ export class FormValidator {
 
 
   _checkInputValidity(inputElement) {
-    console.log(inputElement)
     if (!inputElement.checkValidity()) {
       this._showError(inputElement, inputElement.validationMessage);
     } else {
@@ -72,12 +73,18 @@ export class FormValidator {
     });
   };
 
+  _disableAddFormButton(){
+    addNewPostButton.setAttribute("disabled", "true");
+    addNewPostButton.classList.add("popup__add_disabled");
+  }
+
   enableValidation() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       
     });
     this._setEventListener();
+    this._disableAddFormButton();
   }
 }
 

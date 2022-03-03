@@ -1,6 +1,6 @@
 import {FormValidator} from "./FormValidator.js";
 import {Card} from "./Card.js";
-import PopupWithImage from "./PopupWithImage.js";
+
 
 import{
   postList,
@@ -14,7 +14,7 @@ import{
   popupPreviewCLoseButton,
   cardTemplateSelector,
   formValidation,
-   initialCards
+  initialCards
 } from "./Constants.js";
 
 import {
@@ -22,19 +22,13 @@ import {
   closePopup,
   clearErrorMessage
 } from "./Utils.js"
-const popupPreviewOpen = new PopupWithImage(document.querySelector(".preview-popup"));
-function popupPreviewClick(){
-  popupPreviewOpen.open(popupPreview);
-  popupPreviewOpen.setEventListener();
-}
+
 
 
 function renderCard(data) {
-  const card = new Card(data, cardTemplateSelector, popupPreviewClick);
+  const card = new Card(data, cardTemplateSelector);
   const cardElement = card.createCard();
   postList.prepend(cardElement);
-
-
 }
 
 initialCards.forEach(renderCard);
@@ -121,6 +115,9 @@ function addNewPlace(event) {
   addFormName.value = "";
   addFormLink.value = "";
 };
+
+
+
 
 
 addForm.addEventListener("submit", addNewPlace);

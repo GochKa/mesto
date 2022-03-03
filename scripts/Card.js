@@ -1,8 +1,11 @@
-import { popupPreview } from "./Constants.js"
-import PopupWithImage from "./PopupWithImage.js";
-
+import {openPopup} from "./Utils.js"
+import { 
+  popupPreview,
+  popupPreviewImg,
+  popupPreviewTitle 
+} from "./Constants.js";
 export class Card {
-  constructor(data, cardTemplateSelector,) {
+  constructor(data,cardTemplateSelector) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
@@ -19,17 +22,19 @@ export class Card {
     EventDel.closest(".post-list__item").remove();
   };
 
-  _postTempImgOpen(){
-    const previewPopupOpen = new PopupWithImage(popupPreview);
-    previewPopupOpen.open(this._name, this._link)
+  _postTempImgOpen(evt){
+    openPopup(popupPreview);
+    popupPreviewImg.src = evt.target.src; 
+
+    popupPreviewTitle.textContent = evt.target.textContent; 
+
+    popupPreviewImg.alt = evt.target.textContent; 
   };
 
   _setEventListeners(){
     this._postTempLikeButton.addEventListener("click", this._postTempLikeButtonHandler);
     this._postTempDelButton.addEventListener("click", this._postTempDelButtonHandler);
-    this._postTempImg.addEventListener("click", () =>{
-      this._postTempImgOpen(this._name, this._link);
-    });
+    this._postTempImg.addEventListener("click", this._postTempImgOpen);
   }
 
 
@@ -45,7 +50,6 @@ export class Card {
     this._postTempImg.src = this._link;
     this._postTempTitle.textContent = this._name;
     this._postTempImg.alt = this._name;
-
     
     this._setEventListeners();
     return this._postItemTemp;
