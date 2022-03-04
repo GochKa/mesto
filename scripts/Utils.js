@@ -13,15 +13,15 @@ export function closePopup(popup) {
 
 export function closePopupOnOverlay(evt){
   if (evt.target === evt.currentTarget){
-    evt.target.classList.remove("popup_opened");
-    clearErrorMessage()
+    closePopup(evt.target);
+
   }
 }
 
 export function closePopupKeyHandler(event){
   if(event.key === "Escape" || event.keyCode === 27){
-    const classClosing = document.querySelector(".popup_opened");
-    closePopup(classClosing);
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
     clearErrorMessage()
   }
 }

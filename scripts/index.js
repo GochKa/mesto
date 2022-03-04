@@ -23,11 +23,14 @@ import {
   clearErrorMessage
 } from "./Utils.js"
 
-
+function createCard(item){
+  const card = new Card(item, cardTemplateSelector);
+  const cardElement = card.makeCard();
+  return cardElement;
+}
 
 function renderCard(data) {
-  const card = new Card(data, cardTemplateSelector);
-  const cardElement = card.createCard();
+  const cardElement = createCard(data)
   postList.prepend(cardElement);
 }
 
@@ -36,27 +39,28 @@ initialCards.forEach(renderCard);
 
 //Обработчики кнопок 
 //Открытие
-const submitProfileButton = document.querySelector(".button-profile-submit");
 popupProfileOpenButton.addEventListener("click", () => {
-  copyPopup();
+  copyProfileData();
   openPopup(popupProfile);
-  submitProfileButton.removeAttribute("disabled");
-  submitProfileButton.classList.remove("popup__add_disabled");
+  clearErrorMessage();
+  const editFormResetValidation = new FormValidator(formValidation, popupProfile);
+  editFormResetValidation.resetValidation();
 });
 
 popupAddNewPlaceButton.addEventListener("click", () => {
   openPopup(popupAdd);
+  clearErrorMessage()
+  const addCardFormResetValidation = new FormValidator(formValidation, popupAdd);
+  addCardFormResetValidation.resetValidation()
 });
 
 //Закрытие
 popupCloseButton.addEventListener("click", () => {
   closePopup(popupProfile);
-  clearErrorMessage()
 });
 
 popupAddCloseButton.addEventListener("click", () => {
   closePopup(popupAdd);
-  clearErrorMessage()
 });
 
 popupPreviewCLoseButton.addEventListener("click", () => {
@@ -86,7 +90,7 @@ function changeProfile(evt) {
 popupProfileForm.addEventListener('submit', changeProfile);
 
 //Копирование данных из профиля в Popup
-function copyPopup() {
+function copyProfileData() {
   popupProfileName.value = profileName.textContent;
   popupProfileJob.value = profileJob.textContent;
 };
@@ -101,19 +105,16 @@ import {addFormName, addFormLink, addNewPostButton} from "./Constants.js"
 
 function addNewPlace(event) {
   event.preventDefault();
-
+  
   renderCard({
     name: addFormName.value,
     link: addFormLink.value
   });
 
   closePopup(popupAdd);
-  clearErrorMessage();
-  addNewPostButton.setAttribute("disabled", "true");
-  addNewPostButton.classList.add("popup__add_disabled");
 
-  addFormName.value = "";
-  addFormLink.value = "";
+
+  addForm.reset();
 };
 
 
@@ -129,3 +130,5 @@ const addCardFormValidation = new FormValidator(formValidation, addForm);
 
 editFormValidation.enableValidation();
 addCardFormValidation.enableValidation();
+
+

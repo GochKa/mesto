@@ -58,6 +58,7 @@ export const popupPreviewCLoseButton = document.querySelector(".button-close-pre
 
 export const cardTemplateSelector = "#post-temp";
 
+
 //Формы 
 export const editForm = document.querySelector(".popup__form-profile");
 export const addCardForm = document.querySelector(".popup__form-add-card");

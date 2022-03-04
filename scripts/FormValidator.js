@@ -1,12 +1,15 @@
-import { addNewPostButton } from "./Constants.js";
-
 export class FormValidator {
   constructor(settings, form) {
     this._form = form;
     this._settings = settings;
-  
+
+    this._popupProfile = document.querySelector(".profile-popup")
+    this._popupAddCard = document.querySelector(".add-popup")
+
     this._inputSet = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
     this._buttonElm = this._form.querySelector(this._settings.activeButtonClass);
+
+    
   }
 
   _hasInvalidInput(){
@@ -19,6 +22,7 @@ export class FormValidator {
     const {inactiveButtonClass} = this._settings
     this._buttonElm.classList.add(inactiveButtonClass);
     this._buttonElm.disabled = true;
+
   };
 
   _enableSubmitButton () {
@@ -27,15 +31,14 @@ export class FormValidator {
     this._buttonElm.disabled = false;
   };
 
-
   _toggleButton(){
     if (this._hasInvalidInput()){
       this._disableSubmitButton();
     } else{
       this._enableSubmitButton();
     }
-  }
 
+  }
 
   _showError(input, errorText) {
     const {errorVisibleClass, inputErrorClass} = this._settings;
@@ -73,9 +76,12 @@ export class FormValidator {
     });
   };
 
-  _disableAddFormButton(){
-    addNewPostButton.setAttribute("disabled", "true");
-    addNewPostButton.classList.add("popup__add_disabled");
+  resetValidation(){
+    this._toggleButton();
+
+    this._inputSet.forEach((inputElement) =>{
+      this._hideError(inputElement);
+    })
   }
 
   enableValidation() {
@@ -84,8 +90,10 @@ export class FormValidator {
       
     });
     this._setEventListener();
-    this._disableAddFormButton();
+    this._toggleButton();
+    
   }
+
 }
 
 
