@@ -20,7 +20,6 @@ import{
 import {
   openPopup,
   closePopup,
-  clearErrorMessage
 } from "./Utils.js"
 
 function createCard(item){
@@ -42,16 +41,12 @@ initialCards.forEach(renderCard);
 popupProfileOpenButton.addEventListener("click", () => {
   copyProfileData();
   openPopup(popupProfile);
-  clearErrorMessage();
-  const editFormResetValidation = new FormValidator(formValidation, popupProfile);
-  editFormResetValidation.resetValidation();
+  editFormValidation.resetValidation();
 });
 
 popupAddNewPlaceButton.addEventListener("click", () => {
   openPopup(popupAdd);
-  clearErrorMessage()
-  const addCardFormResetValidation = new FormValidator(formValidation, popupAdd);
-  addCardFormResetValidation.resetValidation()
+  addCardFormValidation.resetValidation()
 });
 
 //Закрытие

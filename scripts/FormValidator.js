@@ -3,9 +3,6 @@ export class FormValidator {
     this._form = form;
     this._settings = settings;
 
-    this._popupProfile = document.querySelector(".profile-popup")
-    this._popupAddCard = document.querySelector(".add-popup")
-
     this._inputSet = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
     this._buttonElm = this._form.querySelector(this._settings.activeButtonClass);
 
@@ -51,7 +48,6 @@ export class FormValidator {
 
   _hideError(input) {
     const errorElement = this._form.querySelector(`#error-${input.id}`);
-
     const {errorVisibleClass, inputErrorClass} = this._settings;
     input.classList.remove(inputErrorClass);
     errorElement.classList.remove(errorVisibleClass);

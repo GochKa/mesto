@@ -24,9 +24,18 @@ export class Card {
   };
 
 
+  
   _setEventListeners(){
     this._postTempLikeButton.addEventListener("click", this._postTempLikeButtonHandler);
     this._postTempDelButton.addEventListener("click", this._postTempDelButtonHandler);
+
+    this._postTempImg.addEventListener("click", () =>{
+      openPopup(popupPreview);
+    
+      popupPreviewImg.src = this._link; 
+      popupPreviewTitle.textContent = this._name; 
+      popupPreviewImg.alt = this._name;
+    });
   }
 
 
@@ -38,13 +47,7 @@ export class Card {
     this._postTempDelButton = this._postItemTemp.querySelector(".button-card-delete");
     this._postTempLikeButton = this._postItemTemp.querySelector(".post-list__like");
 
-    this._postTempImg.addEventListener("click", () =>{
-      openPopup(popupPreview);
-    
-      popupPreviewImg.src = this._link; 
-      popupPreviewTitle.textContent = this._name; 
-      popupPreviewImg.alt = this._name;
-    });
+
 
 
 
