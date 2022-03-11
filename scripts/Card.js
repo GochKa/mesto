@@ -6,11 +6,12 @@ import {
 } from "./Constants.js";
 
 export class Card {
-  constructor(data,cardTemplateSelector) {
+  constructor(data,cardTemplateSelector, handlePopupImg) {
     this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._template = document.querySelector(cardTemplateSelector).content;
+    this._handlePopupImg = handlePopupImg;
   }
 
   _postTempLikeButtonHandler(evt) {
@@ -29,13 +30,7 @@ export class Card {
     this._postTempLikeButton.addEventListener("click", this._postTempLikeButtonHandler);
     this._postTempDelButton.addEventListener("click", this._postTempDelButtonHandler);
 
-    this._postTempImg.addEventListener("click", () =>{
-      openPopup(popupPreview);
-    
-      popupPreviewImg.src = this._link; 
-      popupPreviewTitle.textContent = this._name; 
-      popupPreviewImg.alt = this._name;
-    });
+    this._postTempImg.addEventListener("click",()=> this._handlePopupImg());
   }
 
 

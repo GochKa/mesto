@@ -1,17 +1,21 @@
 import {FormValidator} from "./FormValidator.js";
 import {Card} from "./Card.js";
 
+import { Section } from "./Section.js";
+import { PopupWithImag } from "./PopupWithImag.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
+
 
 import{
   postList,
-  popupPreview,
   popupProfile,
   popupAdd,
   popupProfileOpenButton,
   popupAddNewPlaceButton,
+  popupPreviewCLoseButton,
   popupCloseButton,
   popupAddCloseButton,
-  popupPreviewCLoseButton,
   cardTemplateSelector,
   formValidation,
   initialCards
@@ -22,52 +26,23 @@ import {
   closePopup,
 } from "./Utils.js"
 
-function createCard(item){
-  const card = new Card(item, cardTemplateSelector);
-  const cardElement = card.makeCard();
-  return cardElement;
-}
 
-function renderCard(data) {
-  const cardElement = createCard(data)
-  postList.prepend(cardElement);
-}
 
-initialCards.forEach(renderCard);
 
 
 //Обработчики кнопок 
 //Открытие
 popupProfileOpenButton.addEventListener("click", () => {
   copyProfileData();
-  openPopup(popupProfile);
+  profilePopup.open()
   editFormValidation.resetValidation();
 });
 
 popupAddNewPlaceButton.addEventListener("click", () => {
-  openPopup(popupAdd);
+  addCardPopup.open()
   addCardFormValidation.resetValidation()
 });
 
-//Закрытие
-popupCloseButton.addEventListener("click", () => {
-  closePopup(popupProfile);
-});
-
-popupAddCloseButton.addEventListener("click", () => {
-  closePopup(popupAdd);
-});
-
-popupPreviewCLoseButton.addEventListener("click", () => {
-  closePopup(popupPreview);
-});
-
-
-
-//!Кнопка сохранения информации профиля
-
-//Текст в профиле
-import {profileName, profileJob} from "./Constants.js"
 
 //Форма в Popup'е
 const popupProfileForm = document.querySelector(".popup__form-profile");
@@ -75,48 +50,27 @@ const popupProfileForm = document.querySelector(".popup__form-profile");
 //Поля формы
 import {popupProfileName, popupProfileJob} from "./Constants.js"
 
-function changeProfile(evt) {
-  evt.preventDefault();
-  profileName.textContent = popupProfileName.value;
-  profileJob.textContent = popupProfileJob.value;
-  closePopup(popupProfile);
+const changeProfile = (data) =>{
+  const {First_name, Profession} = data
+  userInfo.setUserInfo(First_name, Profession);
+
+  profilePopup.close();
 };
 
-popupProfileForm.addEventListener('submit', changeProfile);
+
 
 //Копирование данных из профиля в Popup
 function copyProfileData() {
-  popupProfileName.value = profileName.textContent;
-  popupProfileJob.value = profileJob.textContent;
+  const data = userInfo.getUserInfo();
+  
+  popupProfileName.value = data.name;
+  popupProfileJob.value = data.job;
 };
 
 //Форма добавления новой карточки
 import {addForm} from "./Constants.js"
 
-//Поля формы и кнопка добавления добавления 
-import {addFormName, addFormLink, addNewPostButton} from "./Constants.js"
 
-
-
-function addNewPlace(event) {
-  event.preventDefault();
-  
-  renderCard({
-    name: addFormName.value,
-    link: addFormLink.value
-  });
-
-  closePopup(popupAdd);
-
-
-  addForm.reset();
-};
-
-
-
-
-
-addForm.addEventListener("submit", addNewPlace);
 
 
 const editFormValidation = new FormValidator(formValidation, popupProfileForm);
@@ -126,4 +80,59 @@ const addCardFormValidation = new FormValidator(formValidation, addForm);
 editFormValidation.enableValidation();
 addCardFormValidation.enableValidation();
 
+
+
+
+const addNewPlace = (data) => {
+  
+  console.log("data", data)
+  const card = createCard({
+    name: data.Place,
+    link: data.Link
+  })
+  section.addCard(card);
+
+  addCardPopup.close();
+
+
+
+};
+
+//Превью
+const popupPreviewModal = new PopupWithImag(".preview-popup")
+popupPreviewModal.setEventListeners()
+
+
+//Формы профиля и добавления карточки
+const profilePopup = new PopupWithForm (".profile-popup", changeProfile);
+const addCardPopup = new PopupWithForm (".add-popup", addNewPlace);
+
+profilePopup.setEventListeners();
+addCardPopup.setEventListeners();
+
+
+
+
+//Создание карточек
+const section = new Section({items: initialCards, renderer: renderCard}, ".post-list")
+section.renderCard();
+
+
+function createCard(item){
+  const card = new Card(item, cardTemplateSelector, ()=>{
+    popupPreviewModal.open(item.name,item.link)
+  });
+  const cardElement = card.makeCard();
+  return cardElement;
+}
+
+function renderCard(data) {
+  const cardElement = createCard(data)
+  postList.prepend(cardElement);
+}
+
+
+//Информация пользователя
+
+const userInfo = new UserInfo({profileNameSelector: ".profile__info-title", profileJobSelector:".profile__info-subtitle"});
 
