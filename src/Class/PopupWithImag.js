@@ -1,4 +1,4 @@
-import { Popup } from "./Popup.js";
+import { Popup } from "../Class/Popup.js";
 
 export class PopupWithImag extends Popup{
   open(text, link){

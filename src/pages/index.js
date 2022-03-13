@@ -1,33 +1,22 @@
-import {FormValidator} from "./FormValidator.js";
-import {Card} from "./Card.js";
+import {FormValidator} from "../Class/FormValidator.js";
+import {Card} from "../Class/Card.js";
 
-import { Section } from "./Section.js";
-import { PopupWithImag } from "./PopupWithImag.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import { Section } from "../Class/Section.js";
+import { PopupWithImag } from "../Class/PopupWithImag.js";
+import { PopupWithForm } from "../Class/PopupWithForm.js";
+import { UserInfo } from "../Class/UserInfo.js";
 
+
+import '../pages/index.css'
 
 import{
   postList,
-  popupProfile,
-  popupAdd,
   popupProfileOpenButton,
   popupAddNewPlaceButton,
-  popupPreviewCLoseButton,
-  popupCloseButton,
-  popupAddCloseButton,
   cardTemplateSelector,
   formValidation,
   initialCards
-} from "./Constants.js";
-
-import {
-  openPopup,
-  closePopup,
-} from "./Utils.js"
-
-
-
+} from "../Class/Constants.js";
 
 
 //Обработчики кнопок 
@@ -48,7 +37,7 @@ popupAddNewPlaceButton.addEventListener("click", () => {
 const popupProfileForm = document.querySelector(".popup__form-profile");
 
 //Поля формы
-import {popupProfileName, popupProfileJob} from "./Constants.js"
+import {popupProfileName, popupProfileJob, addForm} from "../Class/Constants.js"
 
 const changeProfile = (data) =>{
   const {First_name, Profession} = data
@@ -68,7 +57,7 @@ function copyProfileData() {
 };
 
 //Форма добавления новой карточки
-import {addForm} from "./Constants.js"
+
 
 
 

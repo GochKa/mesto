@@ -1,10 +1,3 @@
-import {openPopup} from "./Utils.js"
-import { 
-  popupPreview,
-  popupPreviewImg,
-  popupPreviewTitle 
-} from "./Constants.js";
-
 export class Card {
   constructor(data,cardTemplateSelector, handlePopupImg) {
     this._data = data;
