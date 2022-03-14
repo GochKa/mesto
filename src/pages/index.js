@@ -1,10 +1,10 @@
-import {FormValidator} from "../Class/FormValidator.js";
-import {Card} from "../Class/Card.js";
+import {FormValidator} from "../components/FormValidator.js";
+import {Card} from "../components/Card.js";
 
-import { Section } from "../Class/Section.js";
-import { PopupWithImag } from "../Class/PopupWithImag.js";
-import { PopupWithForm } from "../Class/PopupWithForm.js";
-import { UserInfo } from "../Class/UserInfo.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImag } from "../components/PopupWithImag.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 
 import '../pages/index.css'
@@ -16,7 +16,7 @@ import{
   cardTemplateSelector,
   formValidation,
   initialCards
-} from "../Class/Constants.js";
+} from "../utils/constants.js";
 
 
 //Обработчики кнопок 
@@ -37,7 +37,7 @@ popupAddNewPlaceButton.addEventListener("click", () => {
 const popupProfileForm = document.querySelector(".popup__form-profile");
 
 //Поля формы
-import {popupProfileName, popupProfileJob, addForm} from "../Class/Constants.js"
+import {popupProfileName, popupProfileJob, addForm} from "../utils/constants.js"
 
 const changeProfile = (data) =>{
   const {First_name, Profession} = data
@@ -74,7 +74,6 @@ addCardFormValidation.enableValidation();
 
 const addNewPlace = (data) => {
   
-  console.log("data", data)
   const card = createCard({
     name: data.Place,
     link: data.Link
