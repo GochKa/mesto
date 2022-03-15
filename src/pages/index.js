@@ -58,10 +58,6 @@ function copyProfileData() {
 
 //Форма добавления новой карточки
 
-
-
-
-
 const editFormValidation = new FormValidator(formValidation, popupProfileForm);
 const addCardFormValidation = new FormValidator(formValidation, addForm);
 

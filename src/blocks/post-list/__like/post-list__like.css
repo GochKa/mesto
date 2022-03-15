@@ -9,6 +9,10 @@
     align-self: center;
     cursor: pointer;
     transition-duration: 1s;
+    padding-bottom: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .post-list__like:hover{

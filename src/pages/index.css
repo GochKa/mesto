@@ -55,4 +55,10 @@
 @import url(../blocks/popup/__text/_type/_error/popup__text_type_error.css);
 @import url(../blocks/popup/__add/_disabled/popup__add_disabled.css);
 
+@import url(../blocks/like-counter/like-counter.css);
+
+@import url(../blocks/deleat-submit-popup/__container/deleat-submit-popup__container.css);
+@import url(../blocks/deleat-submit-popup/deleat-submit-popup.css);
+@import url(../blocks/deleat__submit/deleat__submit.css);
+
 

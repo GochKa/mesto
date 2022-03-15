@@ -16,7 +16,8 @@
         <main class="content">
 
             <section class="profile">
-            <img src="<%=require('./Images/image.jpg')%>" alt="Профиль" class="profile__avatar">
+           
+                <img src="<%=require('./Images/image.jpg')%>" alt="Профиль" class="profile__avatar">
                 <div class="profile__info">
                     <h1 class="profile__info-title">Жак-Ив Кусто</h1>
                     <button class="edit-button" type="button">
@@ -33,8 +34,12 @@
                         <button class="button-card-delete" type="button"></button>
                         <div class="post-list__info">
                             <h2 class="post-list__title"></h2>
-                            <button class="post-list__like" type="button"></button>
-                        </div>
+                            <button class="post-list__like" type="button">
+                                <p class="like-counter"></p>  
+                            </button>
+                            
+                        </div>         
+                                
                     </div>
                 </template>
             </section>
@@ -86,6 +91,13 @@
         </div>
     </article>
 
+    <article class="popup deleat-submit-popup">
+        <div class="deleat-submit-popup__container">
+            <button class="popup__close close-deleat-popup" type="button"></button>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button class="deleat__submit" type="button">Да</button>
+        </div>
+    </article>
 </body>
 
 </html>
