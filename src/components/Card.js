@@ -1,10 +1,16 @@
 export class Card {
-  constructor(data,cardTemplateSelector, handlePopupImg) {
+  constructor(data,cardTemplateSelector, handlePopupImg, handleDeleatClick) {
     this._data = data;
+    
     this._name = data.name;
     this._link = data.link;
+    this._likes = ".like-counter"
+
+
+    
     this._template = document.querySelector(cardTemplateSelector).content;
     this._handlePopupImg = handlePopupImg;
+    this._handleDeleatClick = handleDeleatClick
   }
 
   _postTempLikeButtonHandler(evt) {
@@ -12,16 +18,20 @@ export class Card {
     like.classList.toggle("post-list__like_active");
   };
 
-  _postTempDelButtonHandler(evt) {
-    const deleat = evt.target;
-    deleat.closest(".post-list__item").remove();
-  };
+  //_postTempDelButtonHandler(evt) {
+   // const deleat = evt.target;
+   // deleat.closest(".post-list__item").remove();
+  //};
 
+  _setLikes(){
+    const likeCountElement = this._postItemTemp.querySelector(this._likes);
+    likeCountElement.textContent = this._likes.length;
+  }
 
   
   _setEventListeners(){
     this._postTempLikeButton.addEventListener("click", this._postTempLikeButtonHandler);
-    this._postTempDelButton.addEventListener("click", this._postTempDelButtonHandler);
+    this._postTempDelButton.addEventListener("click", () => this._handleDeleatClick());
 
     this._postTempImg.addEventListener("click",()=> this._handlePopupImg());
   }
@@ -43,7 +53,10 @@ export class Card {
     this._postTempTitle.textContent = this._name;
     this._postTempImg.alt = this._name;
 
+    
+
     this._setEventListeners();
+    this._setLikes()
     return this._postItemTemp;
   }
 

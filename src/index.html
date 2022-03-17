@@ -16,13 +16,13 @@
         <main class="content">
 
             <section class="profile">
-           
+
                 <img src="<%=require('./Images/image.jpg')%>" alt="Профиль" class="profile__avatar">
                 <div class="profile__info">
-                    <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+                    <h1 class="profile__info-title"></h1>
                     <button class="edit-button" type="button">
                     </button>
-                    <p class="profile__info-subtitle">Исследователь океана</p>
+                    <p class="profile__info-subtitle"></p>
                 </div>
                 <button class="add-bottun" type="button"></button>
             </section>
@@ -34,12 +34,10 @@
                         <button class="button-card-delete" type="button"></button>
                         <div class="post-list__info">
                             <h2 class="post-list__title"></h2>
-                            <button class="post-list__like" type="button">
-                                <p class="like-counter"></p>  
-                            </button>
-                            
-                        </div>         
-                                
+                            <button class="post-list__like" type="button"></button>
+                            <span class="like-counter"></span>
+                        </div>
+
                     </div>
                 </template>
             </section>
@@ -50,6 +48,9 @@
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+
+
+
 
     <article class="popup profile-popup">
         <div class="popup__container">
@@ -91,13 +92,17 @@
         </div>
     </article>
 
+
     <article class="popup deleat-submit-popup">
         <div class="deleat-submit-popup__container">
-            <button class="popup__close close-deleat-popup" type="button"></button>
+            <button class="popup__close button-close-preview-popup" type="button"></button>
             <h2 class="popup__title">Вы уверены?</h2>
-            <button class="deleat__submit" type="button">Да</button>
+            <form class="popup__form">
+                <button class="deleat__submit" type="submit">Да</button>
+            </form>
         </div>
     </article>
+
 </body>
 
 </html>
