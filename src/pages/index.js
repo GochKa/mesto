@@ -33,19 +33,26 @@ import {
 import {
   api
 } from "../components/Api.js"
+
+let userID
+
 api.getProfile()
   .then(res => {
     userInfo.setUserInfo(res.name, res.about)
+
+    userID = res._id
   })
 
 api.getInitialCards()
   .then(cardList => {
-    console.log(cardList)
     cardList.forEach(data => {
       const card = createCard({
         name: data.name,
         link: data.link,
-        likes: data.likes
+        likes: data.likes,
+        _id: data._id,
+        userID: userID,
+        ownerID: data.owner._id
       })
       section.addCard(card);
     })
@@ -109,11 +116,14 @@ const userInfo = new UserInfo({
 const addNewPlace = (data) => {
   api.addCard(data.Place, data.Link)
     .then(res => {
-      console.log("res", res)
+
       const card = createCard({
         name: res.name,
         link: res.link,
-        likes: res.likes
+        likes: res.likes,
+        _id: res._id,
+        userID: userID,
+        ownerID: res.owner._id
       })
       section.addCard(card);
 
@@ -135,13 +145,34 @@ function createCard(item) {
   const card = new Card(
     item,
     cardTemplateSelector,
-    () => 
-    {
+    () => {
       popupPreviewModal.open(item.name, item.link)
     },
-    () =>
-    {
-      confirmModal.open()
+    (id) => {
+      confirmModal.open();
+      confirmModal.changeSubmitHandler(() => {
+        api.deleatCard(id).then(() => {
+          card.deleatCard();
+          confirmModal.close();
+        })
+      });
+    },
+    (id) => {
+      if (card.isLiked()) {
+        api.deleatLike(id)
+          .then(res => {
+            card.setLikes(res.likes)
+            
+          })
+      } else {
+
+        api.addLike(id)
+          .then(res => {
+            console.log(1)
+            card.setLikes(res.likes)
+          })
+
+      }
     }
   );
   const cardElement = card.makeCard();
@@ -176,10 +207,5 @@ editFormValidation.enableValidation();
 addCardFormValidation.enableValidation();
 
 //deleat-submit-popup
-const confirmModal = new PopupWithForm(".deleat-submit-popup", () => {
-  api.deleatCard("6233a7c5ec33df01e196310d")
-  .then(res => {
-    console.log("res", res)
-  })
-});
+const confirmModal = new PopupWithForm(".deleat-submit-popup");
 confirmModal.setEventListeners();

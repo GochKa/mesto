@@ -9,30 +9,8 @@ export const formValidation = {
 };
 
 
-export const initialCards = [{
-  name: 'Река Ли, Китай',
-  link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_0c55afbdfda1cfd00bea35e96b4dfb25.jpg'
-},
-{
-  name: 'Горы Тяньцзи, Китай',
-  link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_f436509ef066bf8709a18b4249482acc.jpg'
-},
-{
-  name: 'Долина Йосемити, США',
-  link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_59c3c2e868a84654118af91efc201229.jpg'
-},
-{
-  name: 'Мачу-Пикчу, Перу',
-  link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_4f7f27067bc0f9250078b361014720f6.jpg'
-},
-{
-  name: 'Шондонг, Вьетнам',
-  link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_abf27fe402a0a23d562d45fc0b637142.jpg'
-},
-{
-  name: 'Гейрангер-фьорд, Норвегия',
-  link: 'https://cameralabs.org/media/camera/aprel/23aprel/23_44622a18dda9f72bee0e798a9fcc9f5c.jpg'
-}
+export const initialCards = [
+ 
 ];
 
 
