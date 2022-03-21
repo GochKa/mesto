@@ -71,6 +71,9 @@ export class Card {
 
 
 
+
+
+
   makeCard() {
 
 

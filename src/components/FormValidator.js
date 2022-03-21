@@ -6,7 +6,6 @@ export class FormValidator {
     this._inputSet = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
     this._buttonElm = this._form.querySelector(this._settings.activeButtonClass);
 
-    
   }
 
   _hasInvalidInput(){

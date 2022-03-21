@@ -61,5 +61,8 @@
 @import url(../blocks/deleat-submit-popup/deleat-submit-popup.css);
 @import url(../blocks/deleat__submit/deleat__submit.css);
 
+@import url(../blocks/change-avatar/change-avatar.css);
 
+@import url(../blocks/change-avatar-popup/change-avatar-popup.css);
+@import url(../blocks/change-avatar-popup/__container/change-avatar-popup__container.css);
 

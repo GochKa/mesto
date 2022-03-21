@@ -73,8 +73,10 @@ class Api {
     .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
     .catch(console.log)
   }
- 
+
+
 }
+ 
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-37',
