@@ -36,14 +36,14 @@ import {
 } from "../components/Api.js"
 
 let userID
-
+//Получение даных профиля 
 api.getProfile()
   .then(res => {
     userInfo.setUserInfo(res)
-
     userID = res._id
   })
 
+//Отрисовка страницы  
 api.getInitialCards()
   .then(cardList => {
     cardList.forEach(data => {
@@ -83,21 +83,6 @@ import {
   addForm
 } from "../utils/constants.js"
 
-const changeProfile = (data) => {
-  const {
-    First_name,
-    Profession
-  } = data
-
-  api.editProfile(First_name, Profession)
-    .then(() => {
-      userInfo.setUserInfo(First_name, Profession);
-      profilePopup.close();
-    })
-};
-
-
-
 //Копирование данных из профиля в Popup
 function copyProfileData() {
   const data = userInfo.getUserInfo();
@@ -106,31 +91,7 @@ function copyProfileData() {
   popupProfileJob.value = data.job;
 };
 //Информация пользователя
-const userInfo = new UserInfo({
-  profileNameSelector: ".profile__info-title",
-  profileJobSelector: ".profile__info-subtitle",
-  avatarSelector: ".profile__avatar"
-});
 
-// Добавление новой карточки на страницу
-const addNewPlace = (data) => {
-  api.addCard(data.Place, data.Link)
-    .then(res => {
-
-      const card = createCard({
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        _id: res._id,
-        userID: userID,
-        ownerID: res.owner._id
-      })
-      section.addCard(card);
-
-      addCardPopup.close();
-    })
-};
-////////////////////////////////////
 
 
 //Создание карточек
@@ -180,7 +141,7 @@ function createCard(item) {
 
 function renderCard(data) {
   const cardElement = createCard(data)
-  postList.prepend(cardElement);
+  postList.append(cardElement);
 }
 ////////////////////////////////////
 
@@ -189,9 +150,41 @@ const popupPreviewModal = new PopupWithImag(".preview-popup")
 popupPreviewModal.setEventListeners()
 ////////////////////////////////////
 
-//Формы профиля и добавления карточки
-const profilePopup = new PopupWithForm(".profile-popup", changeProfile);
-const addCardPopup = new PopupWithForm(".add-popup", addNewPlace);
+//Формы изменения информации профиля
+const profilePopup = new PopupWithForm(".profile-popup", (data) =>{
+  profilePopup.renderLoading(true)
+  api.editProfile(data.First_name, data.Profession)
+  .then((res) => {
+    userInfo.setUserInfo(res);
+    profilePopup.close();
+  }).finally(() =>{
+    profilePopup.renderLoading(false)
+  })
+});
+
+
+//Форма добавления новой карточки
+const addCardPopup = new PopupWithForm(".add-popup", (data) =>{
+  addCardPopup.renderLoading(true)
+  api.addCard(data.Place, data.Link)
+    .then(res => {
+
+      const card = createCard({
+        name: res.name,
+        link: res.link,
+        likes: res.likes,
+        _id: res._id,
+        userID: userID,
+        ownerID: res.owner._id
+      })
+      section.addCard(card);
+
+      addCardPopup.close();
+    })
+    .finally(() =>{
+      addCardPopup.renderLoading(false)
+    })
+});
 
 profilePopup.setEventListeners();
 addCardPopup.setEventListeners();
@@ -214,23 +207,43 @@ confirmModal.setEventListeners();
 ////////////////////////////////////
 
 
-//Изменение аввтара
-//const changeAvatar = new PopupWithForm(".change-avatar-popup", () =>
-//{
- // api.updateAvatar()
-  //.then((res) =>{
-  //  console.log("res", res)
-  //  userInfo.setUserInfo(res.name, res.about, res.avatar);
-  //  changeAvatar.close()
- // })
-  
+//Изменение аватара
+const changeAvatar = new PopupWithForm(".change-avatar-popup", (data) =>{
+  newAvatarFormValidator.enableValidation()
+  const {avatar} = data
+  changeAvatar.renderLoading(true)
+  api.updateAvatar(avatar)
+  .then((res) =>{
+    console.log("res =>", res)
+    userInfo.setNewAvatar(res)
+    changeAvatar.close()
+  })
+  .finally(() =>{
+    changeAvatar.renderLoading(false);
+  })
+})
 
-//})
-//changeAvatar.setEventListeners()
-//changeAvatarButton.addEventListener("click", ()=>{
- // changeAvatar.open()
-//})
 
-//const avatarFormValidator = new FormValidator(formValidation, changeAvatarFrom)
-//avatarFormValidator.enableValidation();
-//".change-avatar-popup"
+
+
+const newAvatarForm = document.querySelector(".change-avatar-form");
+const newAvatarFormValidator = new FormValidator(formValidation, newAvatarForm);
+newAvatarFormValidator.enableValidation()
+console.log(newAvatarForm)
+
+changeAvatar.setEventListeners()
+changeAvatarButton.addEventListener("click", ()=>{
+  newAvatarFormValidator.resetValidation()
+  changeAvatar.open()
+})
+///////////////////
+
+
+
+//Данные профиля
+const userInfo = new UserInfo({
+  profileNameSelector: ".profile__info-title",
+  profileJobSelector: ".profile__info-subtitle",
+  avatarSelector: ".profile__avatar"
+});
+/////////////////////////

@@ -26,7 +26,7 @@ export class Card {
   };
 
   isLiked() {
-    const userHasLikedCard = this._likes.find(user => user.is === this._userID);
+    const userHasLikedCard = this._likes.find(user => user._id === this._userID);
 
     return userHasLikedCard
   }

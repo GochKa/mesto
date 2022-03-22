@@ -6,7 +6,7 @@ class Api {
 
 
   getProfile(){
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch("https://nomoreparties.co/v1/cohort-37/users/me", {
       headers:  this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
@@ -14,7 +14,7 @@ class Api {
   }
 
   getInitialCards(){
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch("https://mesto.nomoreparties.co/v1/cohort-37/cards", {
       headers:  this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
@@ -56,7 +56,6 @@ class Api {
   }
 
   deleatLike(id){
-
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers
@@ -74,7 +73,17 @@ class Api {
     .catch(console.log)
   }
 
-
+  updateAvatar(avatar){
+    return fetch("https://mesto.nomoreparties.co/v1/cohort-37/users/me/avatar" , {
+      method: "PATCH",
+      headers:  this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
+    .catch(console.log)
+  }
 }
  
 
