@@ -158,7 +158,7 @@ const profilePopup = new PopupWithForm(".profile-popup", (data) =>{
     userInfo.setUserInfo(res);
     profilePopup.close();
   }).finally(() =>{
-    profilePopup.renderLoading(false)
+    profilePopup.renderLoading(false);
   })
 });
 
