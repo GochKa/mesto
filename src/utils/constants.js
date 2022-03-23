@@ -62,3 +62,4 @@ export const addNewPostButton = document.querySelector(".button-add-card");
 
 
 export const changeAvatarButton = document.querySelector(".change-avatar")
+export const changeAvatarForm = document.querySelector(".change-avatar-form")

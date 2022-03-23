@@ -1,13 +1,13 @@
 export class Card {
-  constructor(data, cardTemplateSelector, handlePopupImg, handleDeleatClick, handleLikeClick) {
+  constructor(data, cardTemplateSelector, {handlePopupImg}, handleDeleatClick, handleLikeClick) {
 
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._id = data._id;
 
-    this._userID = data.userID;
-    this._ownerID = data.ownerID
+    this._userID = data.userId;
+    this._owner = data.owner;
 
 
     this._template = document.querySelector(cardTemplateSelector).content;
@@ -68,12 +68,6 @@ export class Card {
 
 
   }
-
-
-
-
-
-
   makeCard() {
 
 
@@ -92,7 +86,7 @@ export class Card {
 
 
 
-    if (this._ownerID !== this._userID) {
+    if (!this._owner || (this._userID !== this._owner._id)) {
       this._postTempDelButton.style.display = "none"
     }
 
