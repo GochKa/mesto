@@ -22,7 +22,6 @@ import {
 import '../pages/index.css'
 
 import {
-  buttonConfirmDeleat,
   popupProfileOpenButton,
   popupAddNewPlaceButton,
   cardTemplateSelector,
