@@ -1,13 +1,12 @@
 export class Section{
-  constructor({items, renderer}, blockSelector){
+  constructor({ renderer}, blockSelector){
     this._container = document.querySelector(blockSelector);
-    this._items = items;
     this._renderer = renderer;
   }
 
-  renderCard(){
-    this._items.forEach( (data) =>{
-      this._renderer(data, this._container)
+  renderCard(items){
+    items.reverse().forEach( (data) =>{
+      this._renderer(data)
     })
   }
 

@@ -60,6 +60,7 @@ export const addFormLink = document.querySelector(".link");
 //Кнопка в форме добавления карточки
 export const addNewPostButton = document.querySelector(".button-add-card");
 
+export const buttonConfirmDeleat = document.querySelector(".button-confirm-deleat")
 
 export const changeAvatarButton = document.querySelector(".change-avatar")
 export const changeAvatarForm = document.querySelector(".change-avatar-form")
