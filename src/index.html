@@ -18,8 +18,8 @@
             <section class="profile">
 
                 <button type="button" class="change-avatar">
-                <img src="<%=require('./Images/image.jpg')%>" alt="Профиль" class="profile__avatar">
-            </button>
+                    <img src="<%=require('./Images/image.jpg')%>" alt="Профиль" class="profile__avatar">
+                </button>
                 <div class="profile__info">
                     <h1 class="profile__info-title"></h1>
                     <button class="edit-button" type="button">
@@ -37,8 +37,8 @@
                         <div class="post-list__info">
                             <h2 class="post-list__title"></h2>
                             <button class="post-list__like" type="button">
-                            <span class="like-counter"></span>
-                        </button>
+                                <span class="like-counter"></span>
+                            </button>
                         </div>
 
                     </div>
@@ -100,9 +100,7 @@
         <div class="deleat-submit-popup__container">
             <button class="popup__close button-close-preview-popup" type="button"></button>
             <h2 class="popup__title">Вы уверены?</h2>
-
-                 <button class="button-confirm-deleat" type="submit">Да</button>
-
+            <button class="button-confirm-deleat" type="submit">Да</button>
         </div>
     </article>
 
@@ -111,8 +109,8 @@
             <button class="popup__close button-close-preview-popup" type="button"></button>
             <h2 class="popup__title">Обновить аватар</h2>
             <form class="popup__form change-avatar-form">
-                <input id="image-link" type="url" class="popup__text profile-photo" name="avatar" required autocomplete="off"
-                placeholder="Ссылка на изображение">
+                <input id="image-link" type="url" class="popup__text profile-photo" name="avatar" required
+                    autocomplete="off" placeholder="Ссылка на изображение">
                 <span id="error-image-link" class="error-message"></span>
                 <button class="popup__add" type="submit">Сохранить</button>
             </form>
