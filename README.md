@@ -6,4 +6,4 @@
 С помощью использования JavaScript создан Popup, с помощью которого можно изменять
 данные в профиле пользователя. 
 
-https://gochka.github.io/mesto/index.html
+https://gochka.github.io/mesto/
